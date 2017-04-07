@@ -1,0 +1,3748 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/robconery/massive-js#readme"
+
+    >massive (v2.6.0)</a>
+</h1>
+<h4>A small query tool for Postgres that embraces json and makes life simpler</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.massive">module massive</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.connect">
+            function <span class="apidocSignatureSpan">massive.</span>connect
+            <span class="apidocSignatureSpan">(args, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.connectSync">
+            function <span class="apidocSignatureSpan">massive.</span>connectSync
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.executable">
+            function <span class="apidocSignatureSpan">massive.</span>executable
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.loadSync">
+            function <span class="apidocSignatureSpan">massive.</span>loadSync
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.query">
+            function <span class="apidocSignatureSpan">massive.</span>query
+            <span class="apidocSignatureSpan">(args, object)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.queryable">
+            function <span class="apidocSignatureSpan">massive.</span>queryable
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.runner">
+            function <span class="apidocSignatureSpan">massive.</span>runner
+            <span class="apidocSignatureSpan">(connectionString, defaults)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.table">
+            function <span class="apidocSignatureSpan">massive.</span>table
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">massive.</span>arg_types</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">massive.</span>document</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">massive.</span>document_table</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">massive.</span>executable.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">massive.</span>query.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">massive.</span>queryable.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">massive.</span>runner.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">massive.</span>table.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">massive.</span>where</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.massive.arg_types">module massive.arg_types</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.arg_types.findArgs">
+            function <span class="apidocSignatureSpan">massive.arg_types.</span>findArgs
+            <span class="apidocSignatureSpan">(args, source)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.arg_types.forArgs">
+            function <span class="apidocSignatureSpan">massive.arg_types.</span>forArgs
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.arg_types.queryArgs">
+            function <span class="apidocSignatureSpan">massive.arg_types.</span>queryArgs
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.arg_types.searchArgs">
+            function <span class="apidocSignatureSpan">massive.arg_types.</span>searchArgs
+            <span class="apidocSignatureSpan">(args, source)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.arg_types.whereArgs">
+            function <span class="apidocSignatureSpan">massive.arg_types.</span>whereArgs
+            <span class="apidocSignatureSpan">(args, source)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.massive.document">module massive.document</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.document.formatArray">
+            function <span class="apidocSignatureSpan">massive.document.</span>formatArray
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.document.formatDocument">
+            function <span class="apidocSignatureSpan">massive.document.</span>formatDocument
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.massive.document_table">module massive.document_table</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.document_table.executeDocQuery">
+            function <span class="apidocSignatureSpan">massive.document_table.</span>executeDocQuery
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.document_table.findDoc">
+            function <span class="apidocSignatureSpan">massive.document_table.</span>findDoc
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.document_table.findDocSync">
+            function <span class="apidocSignatureSpan">massive.document_table.</span>findDocSync
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.document_table.getWhereForDoc">
+            function <span class="apidocSignatureSpan">massive.document_table.</span>getWhereForDoc
+            <span class="apidocSignatureSpan">(conditions, offset, prefix)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.document_table.saveDoc">
+            function <span class="apidocSignatureSpan">massive.document_table.</span>saveDoc
+            <span class="apidocSignatureSpan">(args, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.document_table.saveDocSync">
+            function <span class="apidocSignatureSpan">massive.document_table.</span>saveDocSync
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.document_table.searchDoc">
+            function <span class="apidocSignatureSpan">massive.document_table.</span>searchDoc
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.document_table.searchDocSync">
+            function <span class="apidocSignatureSpan">massive.document_table.</span>searchDocSync
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.document_table.setAttribute">
+            function <span class="apidocSignatureSpan">massive.document_table.</span>setAttribute
+            <span class="apidocSignatureSpan">(id, key, val, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.document_table.setAttributeSync">
+            function <span class="apidocSignatureSpan">massive.document_table.</span>setAttributeSync
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.massive.executable">module massive.executable</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.executable.executable">
+            function <span class="apidocSignatureSpan">massive.</span>executable
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.executable.super_">
+            function <span class="apidocSignatureSpan">massive.executable.</span>super_
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.massive.executable.prototype">module massive.executable.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.executable.prototype.invoke">
+            function <span class="apidocSignatureSpan">massive.executable.prototype.</span>invoke
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.massive.query">module massive.query</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.query.query">
+            function <span class="apidocSignatureSpan">massive.</span>query
+            <span class="apidocSignatureSpan">(args, object)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.massive.query.prototype">module massive.query.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.query.prototype.format">
+            function <span class="apidocSignatureSpan">massive.query.prototype.</span>format
+            <span class="apidocSignatureSpan">(where)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.query.prototype.queryOptions">
+            function <span class="apidocSignatureSpan">massive.query.prototype.</span>queryOptions
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.query.prototype.selectList">
+            function <span class="apidocSignatureSpan">massive.query.prototype.</span>selectList
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.massive.queryable">module massive.queryable</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.queryable.queryable">
+            function <span class="apidocSignatureSpan">massive.</span>queryable
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.queryable.super_">
+            function <span class="apidocSignatureSpan">massive.queryable.</span>super_
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.massive.queryable.prototype">module massive.queryable.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.queryable.prototype.count">
+            function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>count
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.queryable.prototype.countSync">
+            function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>countSync
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.queryable.prototype.find">
+            function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>find
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.queryable.prototype.findOne">
+            function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>findOne
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.queryable.prototype.findOneSync">
+            function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>findOneSync
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.queryable.prototype.findSync">
+            function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>findSync
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.queryable.prototype.search">
+            function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>search
+            <span class="apidocSignatureSpan">(args, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.queryable.prototype.searchSync">
+            function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>searchSync
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.queryable.prototype.where">
+            function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>where
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.queryable.prototype.whereSync">
+            function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>whereSync
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.massive.runner">module massive.runner</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.runner.runner">
+            function <span class="apidocSignatureSpan">massive.</span>runner
+            <span class="apidocSignatureSpan">(connectionString, defaults)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.massive.runner.prototype">module massive.runner.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.runner.prototype.end">
+            function <span class="apidocSignatureSpan">massive.runner.prototype.</span>end
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.runner.prototype.executeSqlFile">
+            function <span class="apidocSignatureSpan">massive.runner.prototype.</span>executeSqlFile
+            <span class="apidocSignatureSpan">(args, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.runner.prototype.query">
+            function <span class="apidocSignatureSpan">massive.runner.prototype.</span>query
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.runner.prototype.stream">
+            function <span class="apidocSignatureSpan">massive.runner.prototype.</span>stream
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.massive.table">module massive.table</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.table.table">
+            function <span class="apidocSignatureSpan">massive.</span>table
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.table.super_">
+            function <span class="apidocSignatureSpan">massive.table.</span>super_
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.massive.table.prototype">module massive.table.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.table.prototype.containsPk">
+            function <span class="apidocSignatureSpan">massive.table.prototype.</span>containsPk
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.table.prototype.delimitedPrimaryKeyName">
+            function <span class="apidocSignatureSpan">massive.table.prototype.</span>delimitedPrimaryKeyName
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.table.prototype.destroy">
+            function <span class="apidocSignatureSpan">massive.table.prototype.</span>destroy
+            <span class="apidocSignatureSpan">(args, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.table.prototype.destroySync">
+            function <span class="apidocSignatureSpan">massive.table.prototype.</span>destroySync
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.table.prototype.insert">
+            function <span class="apidocSignatureSpan">massive.table.prototype.</span>insert
+            <span class="apidocSignatureSpan">(data, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.table.prototype.insertSync">
+            function <span class="apidocSignatureSpan">massive.table.prototype.</span>insertSync
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.table.prototype.primaryKeyName">
+            function <span class="apidocSignatureSpan">massive.table.prototype.</span>primaryKeyName
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.table.prototype.save">
+            function <span class="apidocSignatureSpan">massive.table.prototype.</span>save
+            <span class="apidocSignatureSpan">(args, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.table.prototype.saveSync">
+            function <span class="apidocSignatureSpan">massive.table.prototype.</span>saveSync
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.table.prototype.search">
+            function <span class="apidocSignatureSpan">massive.table.prototype.</span>search
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.table.prototype.searchSync">
+            function <span class="apidocSignatureSpan">massive.table.prototype.</span>searchSync
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.table.prototype.update">
+            function <span class="apidocSignatureSpan">massive.table.prototype.</span>update
+            <span class="apidocSignatureSpan">(conditions, fields, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.table.prototype.updateSync">
+            function <span class="apidocSignatureSpan">massive.table.prototype.</span>updateSync
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.massive.where">module massive.where</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.where.docPredicate">
+            function <span class="apidocSignatureSpan">massive.where.</span>docPredicate
+            <span class="apidocSignatureSpan">(result, condition, value, conditions)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.where.forTable">
+            function <span class="apidocSignatureSpan">massive.where.</span>forTable
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.where.generate">
+            function <span class="apidocSignatureSpan">massive.where.</span>generate
+            <span class="apidocSignatureSpan">(result, conditions, generator)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.where.isPkSearch">
+            function <span class="apidocSignatureSpan">massive.where.</span>isPkSearch
+            <span class="apidocSignatureSpan">(conditions)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.where.parseKey">
+            function <span class="apidocSignatureSpan">massive.where.</span>parseKey
+            <span class="apidocSignatureSpan">(key)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.massive.where.predicate">
+            function <span class="apidocSignatureSpan">massive.where.</span>predicate
+            <span class="apidocSignatureSpan">(result, condition, value)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.massive" id="apidoc.module.massive">module massive</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.massive.connect" id="apidoc.element.massive.connect">
+        function <span class="apidocSignatureSpan">massive.</span>connect
+        <span class="apidocSignatureSpan">(args, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">connect = function (args, next) {
+  //override if there&#x27;s a db name passed in
+  if (args.db) {
+    args.connectionString = &#x22;postgres://localhost/&#x22;+args.db;
+  } else if (!args.connectionString) {
+    return next(new Error(&#x22;Need a connectionString or db (name of database on localhost) to connect.&#x22;));
+  }
+
+  var massive = new Massive(args);
+
+  //load up the tables, queries, and commands
+  massive.loadTables(function(err, db) {
+    if (err) { return next(err); }
+
+    self = db;
+
+    massive.loadDescendantTables(function () {
+      if (err) { return next(err); }
+
+      massive.loadViews(function() {
+        if (err) { return next(err); }
+
+        massive.loadFunctions(function(err, db) {
+          if (err) { return next(err); }
+
+          db.loadQueries(); // synchronous
+
+          next(null, db);
+        });
+      });
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Once Massive is installed, you can use it by calling `connect` and passing in a callback which will give you your database instance
+:
+
+```javascript
+var massive = require(&#x22;massive&#x22;);
+
+//you can use db for &#x27;database name&#x27; running on localhost
+//or send in everything using &#x27;connectionString&#x27;
+massive.<span class="apidocCodeKeywordSpan">connect</span>({db : &#x22;myDb&#x22;}, function(err,db){
+  db.myTable.find();
+});
+```
+## Usage
+
+One of the key features of Massive is that it loads all of your tables, Postgres functions, and local query files up as functions
+ (this is really cool, you want this. See below for more info). Massive is fast, and does this quickly. However, there is a one-
+time execution penalty at intialization while all this happens. In most situations it makes sense to do this once, at application
+ load. From there, maintain a reference to the Massive instance (Massive was conceived with this usage in mind). For example, if
+ you are using Express as your application framework, you might do something like this:
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.connectSync" id="apidoc.element.massive.connectSync">
+        function <span class="apidocSignatureSpan">massive.</span>connectSync
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">connectSync = function () {
+			var done = false;
+			var args = Array.prototype.slice.apply(arguments).concat(cb);
+			var err;
+			var res;
+
+			fn.apply(this, args);
+			module.exports.loopWhile(function(){return !done;});
+			if (err)
+				throw err;
+
+			return res;
+
+			function cb(e, r) {
+				err = e;
+				res = r;
+				done = true;		
+			}
+		}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var http = require(&#x27;http&#x27;);
+var massive = require(&#x22;massive&#x22;);
+var connectionString = &#x22;postgres://massive:password@localhost/chinook&#x22;;
+
+// connect to Massive and get the db instance. You can safely use the
+// convenience sync method here because its on app load
+// you can also use loadSync - it&#x27;s an alias
+var massiveInstance = massive.<span class="apidocCodeKeywordSpan">connectSync</span>({connectionString : connectionString})
+
+// Set a reference to the massive instance on Express&#x27; app:
+app.set(&#x27;db&#x27;, massiveInstance);
+http.createServer(app).listen(8080);
+```
+From there, accessing the db is just:
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.executable" id="apidoc.element.massive.executable">
+        function <span class="apidocSignatureSpan">massive.</span>executable
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">executable = function (args) {
+  Entity.apply(this, arguments);
+
+  this.sql = args.sql;
+  this.filePath = args.filePath;
+  this.singleRow = args.singleRow;
+  this.singleValue = args.singleValue;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.loadSync" id="apidoc.element.massive.loadSync">
+        function <span class="apidocSignatureSpan">massive.</span>loadSync
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">loadSync = function () {
+			var done = false;
+			var args = Array.prototype.slice.apply(arguments).concat(cb);
+			var err;
+			var res;
+
+			fn.apply(this, args);
+			module.exports.loopWhile(function(){return !done;});
+			if (err)
+				throw err;
+
+			return res;
+
+			function cb(e, r) {
+				err = e;
+				res = r;
+				done = true;		
+			}
+		}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.query" id="apidoc.element.massive.query">
+        function <span class="apidocSignatureSpan">massive.</span>query
+        <span class="apidocSignatureSpan">(args, object)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">query = function (args, object) {
+  this.source = object.delimitedFullName;
+  this.columns = args.columns || &#x22;*&#x22;;
+  this.only = args.only || false;
+  this.order = args.order || (object.hasOwnProperty(&#x22;pk&#x22;) ? util.format(&#x27;&#x22;%s&#x22;&#x27;, object.pk) : &#x22;1&#x22;);
+  this.orderBody = args.orderBody || false;
+  this.offset = args.offset;
+  this.limit = args.limit;
+  this.stream = args.stream;
+  this.single = args.single || false;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    }
+  }
+  return result;
+};
+
+Massive.prototype.run = function(){
+  var args = ArgTypes.queryArgs(arguments);
+  this.<span class="apidocCodeKeywordSpan">query</span>(args);
+};
+Massive.prototype.runSync = DA(Massive.prototype.run);
+
+Massive.prototype.loadQueries = function() {
+  walkSqlFiles(this, this.scriptsDir);
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.queryable" id="apidoc.element.massive.queryable">
+        function <span class="apidocSignatureSpan">massive.</span>queryable
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">queryable = function () {
+  Entity.apply(this, arguments);
+
+  // create delimited names now instead of at query time
+  this.delimitedName = &#x22;\&#x22;&#x22; + this.name + &#x22;\&#x22;&#x22;;
+  this.delimitedSchema = &#x22;\&#x22;&#x22; + this.schema + &#x22;\&#x22;&#x22;;
+
+  // handle naming when schema is other than public:
+  if(this.schema !== &#x22;public&#x22;) {
+    this.fullname = this.schema + &#x22;.&#x22; + this.name;
+    this.delimitedFullName = this.delimitedSchema + &#x22;.&#x22; + this.delimitedName;
+  } else {
+    this.fullname = this.name;
+    this.delimitedFullName = this.delimitedName;
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.runner" id="apidoc.element.massive.runner">
+        function <span class="apidocSignatureSpan">massive.</span>runner
+        <span class="apidocSignatureSpan">(connectionString, defaults)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">runner = function (connectionString, defaults) {
+  this.connectionString = connectionString;
+  this.defaults = defaults;
+
+  if (defaults) {
+    _.each(defaults, function (v, k) {
+      pg.defaults[k] = v;
+    });
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.table" id="apidoc.element.massive.table">
+        function <span class="apidocSignatureSpan">massive.</span>table
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">table = function (args) {
+  Queryable.apply(this, arguments);
+
+  this.pk = args.pk;
+
+  _.extend(this,DocumentTable);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.massive.arg_types" id="apidoc.module.massive.arg_types">module massive.arg_types</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.massive.arg_types.findArgs" id="apidoc.element.massive.arg_types.findArgs">
+        function <span class="apidocSignatureSpan">massive.arg_types.</span>findArgs
+        <span class="apidocSignatureSpan">(args, source)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">findArgs = function (args, source) {
+  args = Args([
+    {conditions : Args.ANY | Args.Optional, _default : {}},
+    {options : Args.OBJECT | Args.Optional, _default: {}},
+    {next : Args.FUNCTION | Args.Optional, _default : function(err,res){
+      if(err) console.log(err);
+      else console.log(res);
+    }}
+  ], args);
+
+  if (_.isFunction(args.conditions)) {
+    //this is our callback as the only argument, caught by Args.ANY
+    args.next = args.conditions;
+    args.conditions = {};
+  }
+
+  args.query = new Query(args.options, source);
+
+  return args;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var params = [&#x22;{&#x22;+key+&#x22;}&#x22;, val, id];
+var sql = util.format(&#x22;update %s set body=jsonb_set(body, $1, $2, true) where %s = $3 returning *;&#x22;, this.fullname, pkName
+);
+this.executeDocQuery(sql, params, {single:true}, next);
+};
+exports.setAttributeSync = DA(this.setAttribute);
+
+exports.findDoc = function() {
+var args = ArgTypes.<span class="apidocCodeKeywordSpan">findArgs</span>(arguments, this);
+
+var where = this.getWhereForDoc(args.conditions);
+
+if (where.pkQuery) { args.options.single = true; }
+
+var sql = args.query.format(where.where);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.arg_types.forArgs" id="apidoc.element.massive.arg_types.forArgs">
+        function <span class="apidocSignatureSpan">massive.arg_types.</span>forArgs
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">forArgs = function (args) {
+  return Args([
+    {conditions: Args.OBJECT},
+    {generator: Args.STRING | Args.Optional, _default: &#x27;predicate&#x27;},
+    {placeholderOffset: Args.INT | Args.Optional, _default: 0},
+    {prefix: Args.STRING | Args.Optional, _default: &#x27; \nWHERE &#x27;}
+  ], args);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+});
+
+return result;
+};
+
+exports.forTable = function () {
+var args = ArgTypes.<span class="apidocCodeKeywordSpan">forArgs</span>(arguments);
+
+if (_.isEmpty(args.conditions)) {
+  return {
+    where: args.prefix + &#x27;TRUE&#x27;,
+    params: []
+  };
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.arg_types.queryArgs" id="apidoc.element.massive.arg_types.queryArgs">
+        function <span class="apidocSignatureSpan">massive.arg_types.</span>queryArgs
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">queryArgs = function (args){
+  args = Args([
+    {sql : Args.STRING | Args.Required},
+    {params : Args.ARRAY | Args.Optional, _default : []},
+    {options : Args.OBJECT | Args.Optional, _default : {single : false}},
+    {next : Args.FUNCTION | Args.Optional, _default : function(err,res){
+      if(err) console.log(err);
+      else console.log(res);
+    }}
+  ], args);
+  if(!_.isArray(args.params)) args.params = [args.params];
+  return args;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      result = filter.join(&#x22;, &#x22;);
+    }
+  }
+  return result;
+};
+
+Massive.prototype.run = function(){
+  var args = ArgTypes.<span class="apidocCodeKeywordSpan">queryArgs</span>(arguments);
+  this.query(args);
+};
+Massive.prototype.runSync = DA(Massive.prototype.run);
+
+Massive.prototype.loadQueries = function() {
+  walkSqlFiles(this, this.scriptsDir);
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.arg_types.searchArgs" id="apidoc.element.massive.arg_types.searchArgs">
+        function <span class="apidocSignatureSpan">massive.arg_types.</span>searchArgs
+        <span class="apidocSignatureSpan">(args, source)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">searchArgs = function (args, source) {
+  args = Args([
+    {fields : Args.OBJECT | Args.Optional, _default: {}},
+    {options: Args.OBJECT | Args.Optional, _default: {}},
+    {next : Args.FUNCTION | Args.Optional, _default: function(err, res){
+      if(err) console.log(err);
+      else console.log(res);
+    }}
+  ], args);
+
+  args.query = new Query(args.options, source);
+
+  return args;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var Document = require(&#x22;./document&#x22;);
+var Where = require(&#x22;./where&#x22;);
+var ArgTypes = require(&#x22;./arg_types&#x22;);
+var DA = require(&#x22;deasync&#x22;);
+
+//Searching query for jsonb docs
+exports.searchDoc = function(){
+var args = ArgTypes.<span class="apidocCodeKeywordSpan">searchArgs</span>(arguments, this);
+assert(args.fields.keys &#x26;&#x26; args.fields.term, &#x22;Need the keys to use and the term string&#x22;);
+var params = [args.fields.term];
+//yuck full repetition here... fix me...
+if(!_.isArray(args.fields.keys)){
+  args.fields.keys = [args.fields.keys];
+}
+var tsv;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.arg_types.whereArgs" id="apidoc.element.massive.arg_types.whereArgs">
+        function <span class="apidocSignatureSpan">massive.arg_types.</span>whereArgs
+        <span class="apidocSignatureSpan">(args, source)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">whereArgs = function (args, source){
+  args = Args([
+    {where : Args.STRING | Args.Optional, _default : &#x22;true&#x22;},
+    {params : Args.ANY | Args.Optional, _default : []},
+    {next : Args.FUNCTION | Args.Optional, _default : function(err,res){
+      if(err) console.log(err);
+      else console.log(res);
+    }}
+  ], args);
+
+  if(!_.isArray(args.params)) args.params = [args.params];
+
+  args.query = new Query({}, source);
+  return args;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var args;
+var where;
+
+if (_.isObject(arguments[0])) {
+  args = ArgTypes.findArgs(arguments, this);
+  where = _.isEmpty(args.conditions) ? {where : &#x22; &#x22;} : Where.forTable(args.conditions);
+} else {
+  args = ArgTypes.<span class="apidocCodeKeywordSpan">whereArgs</span>(arguments, this);
+  where = {where: &#x22; where &#x22; + args.where};
+}
+
+args.query.columns = &#x22;COUNT(1)&#x22;;
+args.query.order = null;
+var sql = args.query.format(where.where);
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.massive.document" id="apidoc.module.massive.document">module massive.document</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.massive.document.formatArray" id="apidoc.element.massive.document.formatArray">
+        function <span class="apidocSignatureSpan">massive.document.</span>formatArray
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">formatArray = function (args){
+
+  var result = [];
+  _.each(args, function(doc){
+    result.push(this.formatDocument(doc));
+  }.bind(this));
+  return result;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    if(err){
+      args.next(err,null);
+    }else{
+      //only return one result if single is sent in
+      if(args.options.single){
+        doc = Document.formatDocument(res);
+      }else{
+        doc = Document.<span class="apidocCodeKeywordSpan">formatArray</span>(res);
+      }
+      args.next(null,doc);
+    }
+  });
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.document.formatDocument" id="apidoc.element.massive.document.formatDocument">
+        function <span class="apidocSignatureSpan">massive.document.</span>formatDocument
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">formatDocument = function (args){
+  var returnDoc = null;
+  if(args){
+    returnDoc = args.body || {};
+    returnDoc.id = args.id || null;
+  }
+  return returnDoc;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var _ = require(&#x22;underscore&#x22;)._;
+
+//A simple helper function to manage document ids
+exports.formatArray = function(args){
+
+var result = [];
+_.each(args, function(doc){
+  result.push(this.<span class="apidocCodeKeywordSpan">formatDocument</span>(doc));
+}.bind(this));
+return result;
+};
+
+exports.formatDocument = function(args){
+var returnDoc = null;
+if(args){
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.massive.document_table" id="apidoc.module.massive.document_table">module massive.document_table</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.massive.document_table.executeDocQuery" id="apidoc.element.massive.document_table.executeDocQuery">
+        function <span class="apidocSignatureSpan">massive.document_table.</span>executeDocQuery
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">executeDocQuery = function () {
+  var args = ArgTypes.queryArgs(arguments);
+  var doc = {};
+  this.db.query(args.sql, args.params, args.options, function(err,res){
+    if(err){
+      args.next(err,null);
+    }else{
+      //only return one result if single is sent in
+      if(args.options.single){
+        doc = Document.formatDocument(res);
+      }else{
+        doc = Document.formatArray(res);
+      }
+      args.next(null,doc);
+    }
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var where = this.getWhereForDoc(args.fields.where, 1, &#x22; AND &#x22;);
+  whereString = where.where;
+  params = params.concat(where.params);
+}
+
+var sql = args.query.format(util.format(&#x22; WHERE to_tsvector(%s) @@ to_tsquery($1) %s&#x22;, tsv, whereString));
+
+this.<span class="apidocCodeKeywordSpan">executeDocQuery</span>(sql, params, args.options, args.next);
+};
+exports.searchDocSync = DA(this.searchDoc);
+
+exports.saveDoc = function(args, next) {
+assert(_.isObject(args), &#x22;Please pass in the document for saving as an object. Include the primary key for an UPDATE.&#x22;);
+var sql, params = [];
+var pkName = this.primaryKeyName();
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.document_table.findDoc" id="apidoc.element.massive.document_table.findDoc">
+        function <span class="apidocSignatureSpan">massive.document_table.</span>findDoc
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">findDoc = function () {
+  var args = ArgTypes.findArgs(arguments, this);
+
+  var where = this.getWhereForDoc(args.conditions);
+
+  if (where.pkQuery) { args.options.single = true; }
+
+  var sql = args.query.format(where.where);
+
+  this.executeDocQuery(sql, where.params, args.options, args.next);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+db.saveDoc(&#x22;my_documents&#x22;, newDoc, function(err,res){
+  //the table my_documents was created on the fly
+  //res is the new document with an ID created for you
+});
+
+//you can now access the document right on the root
+db.my_documents.<span class="apidocCodeKeywordSpan">findDoc</span>(1, function(err,doc){
+  //you now have access to the doc
+});
+
+//run a &#x27;contains&#x27; query which flexes the index we created for you
+db.my_documents.findDoc({price : 99.00}, function(err,docs){
+  //1 or more documents returned
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.document_table.findDocSync" id="apidoc.element.massive.document_table.findDocSync">
+        function <span class="apidocSignatureSpan">massive.document_table.</span>findDocSync
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">findDocSync = function () {
+			var done = false;
+			var args = Array.prototype.slice.apply(arguments).concat(cb);
+			var err;
+			var res;
+
+			fn.apply(this, args);
+			module.exports.loopWhile(function(){return !done;});
+			if (err)
+				throw err;
+
+			return res;
+
+			function cb(e, r) {
+				err = e;
+				res = r;
+				done = true;		
+			}
+		}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.document_table.getWhereForDoc" id="apidoc.element.massive.document_table.getWhereForDoc">
+        function <span class="apidocSignatureSpan">massive.document_table.</span>getWhereForDoc
+        <span class="apidocSignatureSpan">(conditions, offset, prefix)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getWhereForDoc = function (conditions, offset, prefix) {
+  var where = {pkQuery: false};
+  if(_.isFunction(conditions) || conditions == &#x22;*&#x22;) {
+    // no criteria provided - treat like select *
+    where.where = &#x22;&#x22;;
+    where.params = [];
+    return where;
+  }
+
+  if (Where.isPkSearch(conditions)) {
+    //assume it&#x27;s a search on ID
+    conditions = {id : conditions};
+  }
+
+  if (_.isObject(conditions)) {
+    var keys = _.keys(conditions);
+
+    if (keys.length === 1) {
+      var operator = keys[0].match(&#x22;&#x3c;=|&#x3e;=|!=|&#x3c;&#x3e;|=|&#x3c;|&#x3e;&#x22;);
+      var property = keys[0].replace(operator, &#x22;&#x22;).trim();
+      if (property == this.primaryKeyName()) {
+        // this is a query against the PK...we can use the
+        // plain old table &#x22;where&#x22; builder:
+        where = Where.forTable(conditions, &#x27;predicate&#x27;, offset, prefix);
+
+        // only a true pk query if testing equality
+        if ((operator === null || operator === &#x22;=&#x22;) &#x26;&#x26; !_.isObject(conditions[keys[0]])) {
+          where.pkQuery = true;
+        }
+      } else {
+        where = Where.forTable(conditions, &#x27;docPredicate&#x27;, offset, prefix);
+      }
+    } else {
+      where = Where.forTable(conditions, &#x27;docPredicate&#x27;, offset, prefix);
+    }
+  }
+
+  return where;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  });
+  tsv= util.format(&#x22;concat(%s)&#x22;, formattedKeys.join(&#x22;, &#x27; &#x27;,&#x22;));
+}
+
+var whereString = &#x22;&#x22;;
+
+if (args.fields.where) {
+  var where = this.<span class="apidocCodeKeywordSpan">getWhereForDoc</span>(args.fields.where, 1, &#x22; AND &#x22;);
+  whereString = where.where;
+  params = params.concat(where.params);
+}
+
+var sql = args.query.format(util.format(&#x22; WHERE to_tsvector(%s) @@ to_tsquery($1) %s&#x22;, tsv, whereString));
+
+this.executeDocQuery(sql, params, args.options, args.next);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.document_table.saveDoc" id="apidoc.element.massive.document_table.saveDoc">
+        function <span class="apidocSignatureSpan">massive.document_table.</span>saveDoc
+        <span class="apidocSignatureSpan">(args, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">saveDoc = function (args, next) {
+  assert(_.isObject(args), &#x22;Please pass in the document for saving as an object. Include the primary key for an UPDATE.&#x22;);
+  var sql, params = [];
+  var pkName = this.primaryKeyName();
+  var pkVal = args[pkName];
+
+  // if there&#x27;s a primary key, don&#x27;t store it in the body as well
+  params.push(JSON.stringify(_.omit(args, pkName)));
+
+  if (pkVal) {
+    sql = util.format(&#x22;update %s set body = $1 where %s = $2 returning *;&#x22;, this.fullname, pkName);
+    params.push(pkVal);
+  } else {
+    sql = &#x22;insert into &#x22; + this.fullname + &#x22;(body) values($1) returning *;&#x22;;
+  }
+
+  this.executeDocQuery(sql, params, {single : true}, next);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+price : 99.00,
+tags : [
+  {name : &#x22;Simplicity&#x22;, slug : &#x22;simple&#x22;},
+  {name : &#x22;Fun for All&#x22;, slug : &#x22;fun-for-all&#x22;}
+]
+};
+
+db.<span class="apidocCodeKeywordSpan">saveDoc</span>(&#x22;my_documents&#x22;, newDoc, function(err,res){
+//the table my_documents was created on the fly
+//res is the new document with an ID created for you
+});
+
+//you can now access the document right on the root
+db.my_documents.findDoc(1, function(err,doc){
+//you now have access to the doc
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.document_table.saveDocSync" id="apidoc.element.massive.document_table.saveDocSync">
+        function <span class="apidocSignatureSpan">massive.document_table.</span>saveDocSync
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">saveDocSync = function () {
+			var done = false;
+			var args = Array.prototype.slice.apply(arguments).concat(cb);
+			var err;
+			var res;
+
+			fn.apply(this, args);
+			module.exports.loopWhile(function(){return !done;});
+			if (err)
+				throw err;
+
+			return res;
+
+			function cb(e, r) {
+				err = e;
+				res = r;
+				done = true;		
+			}
+		}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.document_table.searchDoc" id="apidoc.element.massive.document_table.searchDoc">
+        function <span class="apidocSignatureSpan">massive.document_table.</span>searchDoc
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">searchDoc = function (){
+  var args = ArgTypes.searchArgs(arguments, this);
+  assert(args.fields.keys &#x26;&#x26; args.fields.term, &#x22;Need the keys to use and the term string&#x22;);
+  var params = [args.fields.term];
+  //yuck full repetition here... fix me...
+  if(!_.isArray(args.fields.keys)){
+    args.fields.keys = [args.fields.keys];
+  }
+  var tsv;
+  if(args.fields.keys.length === 1){
+    tsv = util.format(&#x22;(body -&#x3e;&#x3e; &#x27;%s&#x27;)&#x22;, args.fields.keys[0]);
+  }else{
+    var formattedKeys = [];
+    _.each(args.fields.keys, function(key){
+      formattedKeys.push(util.format(&#x22;(body -&#x3e;&#x3e; &#x27;%s&#x27;)&#x22;, key));
+    });
+    tsv= util.format(&#x22;concat(%s)&#x22;, formattedKeys.join(&#x22;, &#x27; &#x27;,&#x22;));
+  }
+
+  var whereString = &#x22;&#x22;;
+
+  if (args.fields.where) {
+    var where = this.getWhereForDoc(args.fields.where, 1, &#x22; AND &#x22;);
+    whereString = where.where;
+    params = params.concat(where.params);
+  }
+
+  var sql = args.query.format(util.format(&#x22; WHERE to_tsvector(%s) @@ to_tsquery($1) %s&#x22;, tsv, whereString));
+
+  this.executeDocQuery(sql, params, args.options, args.next);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+});
+```
+
+This works the same for documents as well (more on documents in next section):
+
+```javascript
+//full text search...
+db.my_documents.<span class="apidocCodeKeywordSpan">searchDoc</span>({
+  keys : [&#x22;title&#x22;, &#x22;description&#x22;],
+  term : &#x22;Kauai&#x22;
+}, function(err,docs){
+  //docs returned with an on-the-fly Full Text Search for &#x27;Kauai&#x27;
+});
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.document_table.searchDocSync" id="apidoc.element.massive.document_table.searchDocSync">
+        function <span class="apidocSignatureSpan">massive.document_table.</span>searchDocSync
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">searchDocSync = function () {
+			var done = false;
+			var args = Array.prototype.slice.apply(arguments).concat(cb);
+			var err;
+			var res;
+
+			fn.apply(this, args);
+			module.exports.loopWhile(function(){return !done;});
+			if (err)
+				throw err;
+
+			return res;
+
+			function cb(e, r) {
+				err = e;
+				res = r;
+				done = true;		
+			}
+		}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.document_table.setAttribute" id="apidoc.element.massive.document_table.setAttribute">
+        function <span class="apidocSignatureSpan">massive.document_table.</span>setAttribute
+        <span class="apidocSignatureSpan">(id, key, val, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">setAttribute = function (id, key, val, next){
+  if (typeof val === &#x27;string&#x27;) { val = JSON.stringify(val); }
+  if (Array.isArray(val)) { val = JSON.stringify(val); }
+
+  var pkName = this.primaryKeyName();
+  var params = [&#x22;{&#x22;+key+&#x22;}&#x22;, val, id];
+  var sql = util.format(&#x22;update %s set body=jsonb_set(body, $1, $2, true) where %s = $3 returning *;&#x22;, this.fullname, pkName);
+  this.executeDocQuery(sql, params, {single:true}, next);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.document_table.setAttributeSync" id="apidoc.element.massive.document_table.setAttributeSync">
+        function <span class="apidocSignatureSpan">massive.document_table.</span>setAttributeSync
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">setAttributeSync = function () {
+			var done = false;
+			var args = Array.prototype.slice.apply(arguments).concat(cb);
+			var err;
+			var res;
+
+			fn.apply(this, args);
+			module.exports.loopWhile(function(){return !done;});
+			if (err)
+				throw err;
+
+			return res;
+
+			function cb(e, r) {
+				err = e;
+				res = r;
+				done = true;		
+			}
+		}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.massive.executable" id="apidoc.module.massive.executable">module massive.executable</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.massive.executable.executable" id="apidoc.element.massive.executable.executable">
+        function <span class="apidocSignatureSpan">massive.</span>executable
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">executable = function (args) {
+  Entity.apply(this, arguments);
+
+  this.sql = args.sql;
+  this.filePath = args.filePath;
+  this.singleRow = args.singleRow;
+  this.singleValue = args.singleValue;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.executable.super_" id="apidoc.element.massive.executable.super_">
+        function <span class="apidocSignatureSpan">massive.executable.</span>super_
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">super_ = function (args) {
+  this.schema = args.schema || &#x27;public&#x27;;
+  this.name = args.name;
+  this.db = args.db;
+
+  // create delimited names now instead of at query time
+  this.delimitedName = &#x22;\&#x22;&#x22; + this.name + &#x22;\&#x22;&#x22;;
+  this.delimitedSchema = &#x22;\&#x22;&#x22; + this.schema + &#x22;\&#x22;&#x22;;
+
+  // handle naming when schema is other than public:
+  if(this.schema !== &#x22;public&#x22;) {
+    this.fullname = this.schema + &#x22;.&#x22; + this.name;
+    this.delimitedFullName = this.delimitedSchema + &#x22;.&#x22; + this.delimitedName;
+  } else {
+    this.fullname = this.name;
+    this.delimitedFullName = this.delimitedName;
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.massive.executable.prototype" id="apidoc.module.massive.executable.prototype">module massive.executable.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.massive.executable.prototype.invoke" id="apidoc.element.massive.executable.prototype.invoke">
+        function <span class="apidocSignatureSpan">massive.executable.prototype.</span>invoke
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">invoke = function () {
+
+  var args = Array.prototype.slice.call(arguments);
+  var next = args.pop();
+  var opts = {};
+  var params = [];
+
+  if (!_.isFunction(next)) {
+    throw &#x22;Function or Script Execution expects a next function as the last argument&#x22;;
+  }
+
+  if (!_.isArray(_.last(args)) &#x26;&#x26; _.isObject(_.last(args))) {
+    opts = args.pop();
+  }
+
+  if (_.isArray(args[0])) {          // backwards compatible -- db.function([...], ?opts, callback)
+    params = args[0];
+  } else {
+    params = args;
+  }
+
+  // console.log(&#x22;invoke next: &#x22;, next);
+  // console.log(&#x22;invoke opts: &#x22;, opts);
+  // console.log(&#x22;invoke params: &#x22;, params);
+
+  var singleRow = this.singleRow &#x26;&#x26; !opts.stream;
+  var singleValue = this.singleValue;
+
+  if (opts.stream) {
+    this.db.stream(this.sql, params, null, function (err, stream) {
+      if (err) return next(err);
+      if (singleValue) {
+        var singleValueTransform = SingleValueStream();
+        return next(null, stream.pipe(singleValueTransform));
+      } else {
+        return next(null, stream);
+      }
+    });
+  } else {
+    this.db.query(this.sql, params, null, function (err, rawData) {
+      var data = rawData;
+      if (err) return next(err);
+      try {
+        if (singleRow) {
+          if (!Array.isArray(data)) {
+            return next(new Error(&#x22;Was expecting an array&#x22;));
+          }
+          data = data[0] || null;
+          if (singleValue) {
+            data = _processSingleValue(data);
+          }
+        } else {
+          if (singleValue) {
+            data = data.map(_processSingleValue);
+          }
+        }
+      } catch (e) {
+        err = e;
+      }
+      return next(err, data);
+    });
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.massive.query" id="apidoc.module.massive.query">module massive.query</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.massive.query.query" id="apidoc.element.massive.query.query">
+        function <span class="apidocSignatureSpan">massive.</span>query
+        <span class="apidocSignatureSpan">(args, object)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">query = function (args, object) {
+  this.source = object.delimitedFullName;
+  this.columns = args.columns || &#x22;*&#x22;;
+  this.only = args.only || false;
+  this.order = args.order || (object.hasOwnProperty(&#x22;pk&#x22;) ? util.format(&#x27;&#x22;%s&#x22;&#x27;, object.pk) : &#x22;1&#x22;);
+  this.orderBody = args.orderBody || false;
+  this.offset = args.offset;
+  this.limit = args.limit;
+  this.stream = args.stream;
+  this.single = args.single || false;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    }
+  }
+  return result;
+};
+
+Massive.prototype.run = function(){
+  var args = ArgTypes.queryArgs(arguments);
+  this.<span class="apidocCodeKeywordSpan">query</span>(args);
+};
+Massive.prototype.runSync = DA(Massive.prototype.run);
+
+Massive.prototype.loadQueries = function() {
+  walkSqlFiles(this, this.scriptsDir);
+};
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.massive.query.prototype" id="apidoc.module.massive.query.prototype">module massive.query.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.massive.query.prototype.format" id="apidoc.element.massive.query.prototype.format">
+        function <span class="apidocSignatureSpan">massive.query.prototype.</span>format
+        <span class="apidocSignatureSpan">(where)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">format = function (where) {
+  var from = this.only ? &#x22; FROM ONLY &#x22; : &#x22; FROM &#x22;;
+
+  return &#x22;SELECT &#x22; + this.selectList() + from + this.source + where + this.queryOptions();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+};
+
+Massive.prototype.documentTableSql = function(tableName){
+var docSqlFile = __dirname + &#x22;/lib/scripts/create_document_table.sql&#x22;;
+var sql = fs.readFileSync(docSqlFile, {encoding: &#x27;utf-8&#x27;});
+
+var indexName = tableName.replace(&#x22;.&#x22;, &#x22;_&#x22;);
+sql = util.<span class="apidocCodeKeywordSpan">format</span>(sql, tableName, indexName, tableName, indexName, tableName);
+return sql;
+};
+
+
+Massive.prototype.dropTable = function(table, options, next) {
+var sql = this.dropTableSql(table, options);
+this.query(sql, function(err, res) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.query.prototype.queryOptions" id="apidoc.element.massive.query.prototype.queryOptions">
+        function <span class="apidocSignatureSpan">massive.query.prototype.</span>queryOptions
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">queryOptions = function () {
+  if (_.isArray(this.order)) {
+    var orderBody = this.orderBody;
+
+    this.order = _.reduce(this.order, function (acc, val) {
+      val.direction = val.direction || &#x22;asc&#x22;;
+
+      if (orderBody) {
+        val.field = util.format(&#x22;body-&#x3e;&#x3e;&#x27;%s&#x27;&#x22;, val.field);
+      }
+
+      if (val.type) {
+        acc.push(util.format(&#x22;(%s)::%s %s&#x22;, val.field, val.type, val.direction));
+      } else {
+        acc.push(util.format(&#x22;%s %s&#x22;, val.field, val.direction));
+      }
+
+      return acc;
+    }, []).join(&#x22;,&#x22;);
+  }
+
+  var sql = &#x22;&#x22;;
+
+  if (this.order) { sql = &#x22; order by &#x22; + this.order; }
+  if (this.offset) { sql += &#x22; offset &#x22; + this.offset; }
+  if (this.limit || this.single) { sql += &#x22; limit &#x22; + (this.limit || &#x22;1&#x22;); }
+
+  return sql;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+this.stream = args.stream;
+this.single = args.single || false;
+};
+
+Query.prototype.format = function (where) {
+var from = this.only ? &#x22; FROM ONLY &#x22; : &#x22; FROM &#x22;;
+
+return &#x22;SELECT &#x22; + this.selectList() + from + this.source + where + this.<span class="apidocCodeKeywordSpan">queryOptions
+</span>();
+};
+
+Query.prototype.selectList = function () {
+if (_.isArray(this.columns)) {
+  return this.columns.join(&#x27;,&#x27;);
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.query.prototype.selectList" id="apidoc.element.massive.query.prototype.selectList">
+        function <span class="apidocSignatureSpan">massive.query.prototype.</span>selectList
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">selectList = function () {
+  if (_.isArray(this.columns)) {
+    return this.columns.join(&#x27;,&#x27;);
+  }
+
+  return this.columns;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+this.stream = args.stream;
+this.single = args.single || false;
+};
+
+Query.prototype.format = function (where) {
+var from = this.only ? &#x22; FROM ONLY &#x22; : &#x22; FROM &#x22;;
+
+return &#x22;SELECT &#x22; + this.<span class="apidocCodeKeywordSpan">selectList</span>() + from + this.source + where + this.queryOptions
+();
+};
+
+Query.prototype.selectList = function () {
+if (_.isArray(this.columns)) {
+  return this.columns.join(&#x27;,&#x27;);
+}
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.massive.queryable" id="apidoc.module.massive.queryable">module massive.queryable</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.massive.queryable.queryable" id="apidoc.element.massive.queryable.queryable">
+        function <span class="apidocSignatureSpan">massive.</span>queryable
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">queryable = function () {
+  Entity.apply(this, arguments);
+
+  // create delimited names now instead of at query time
+  this.delimitedName = &#x22;\&#x22;&#x22; + this.name + &#x22;\&#x22;&#x22;;
+  this.delimitedSchema = &#x22;\&#x22;&#x22; + this.schema + &#x22;\&#x22;&#x22;;
+
+  // handle naming when schema is other than public:
+  if(this.schema !== &#x22;public&#x22;) {
+    this.fullname = this.schema + &#x22;.&#x22; + this.name;
+    this.delimitedFullName = this.delimitedSchema + &#x22;.&#x22; + this.delimitedName;
+  } else {
+    this.fullname = this.name;
+    this.delimitedFullName = this.delimitedName;
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.queryable.super_" id="apidoc.element.massive.queryable.super_">
+        function <span class="apidocSignatureSpan">massive.queryable.</span>super_
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">super_ = function (args) {
+  this.schema = args.schema || &#x27;public&#x27;;
+  this.name = args.name;
+  this.db = args.db;
+
+  // create delimited names now instead of at query time
+  this.delimitedName = &#x22;\&#x22;&#x22; + this.name + &#x22;\&#x22;&#x22;;
+  this.delimitedSchema = &#x22;\&#x22;&#x22; + this.schema + &#x22;\&#x22;&#x22;;
+
+  // handle naming when schema is other than public:
+  if(this.schema !== &#x22;public&#x22;) {
+    this.fullname = this.schema + &#x22;.&#x22; + this.name;
+    this.delimitedFullName = this.delimitedSchema + &#x22;.&#x22; + this.delimitedName;
+  } else {
+    this.fullname = this.name;
+    this.delimitedFullName = this.delimitedName;
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.massive.queryable.prototype" id="apidoc.module.massive.queryable.prototype">module massive.queryable.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.massive.queryable.prototype.count" id="apidoc.element.massive.queryable.prototype.count">
+        function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>count
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">count = function () {
+  var args;
+  var where;
+
+  if (_.isObject(arguments[0])) {
+    args = ArgTypes.findArgs(arguments, this);
+    where = _.isEmpty(args.conditions) ? {where : &#x22; &#x22;} : Where.forTable(args.conditions);
+  } else {
+    args = ArgTypes.whereArgs(arguments, this);
+    where = {where: &#x22; where &#x22; + args.where};
+  }
+
+  args.query.columns = &#x22;COUNT(1)&#x22;;
+  args.query.order = null;
+  var sql = args.query.format(where.where);
+
+  this.db.query(sql, where.params || args.params, {single : true}, function(err, res) {
+    if (err) args.next(err, null);
+    else args.next(null, res.count);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+});
+};
+Queryable.prototype.findOneSync = DA(Queryable.prototype.findOne);
+
+/**
+ * Counts rows and calls back with any error and the total. There are two ways to use this method:
+ *
+ * 1. find() style: db.mytable.<span class="apidocCodeKeywordSpan">count</span>({field: value}, callback);
+ * 2. where() style: db.mytable.count(&#x22;field=$1&#x22;, [value], callback);
+ */
+Queryable.prototype.count = function() {
+var args;
+var where;
+
+if (_.isObject(arguments[0])) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.queryable.prototype.countSync" id="apidoc.element.massive.queryable.prototype.countSync">
+        function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>countSync
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">countSync = function () {
+			var done = false;
+			var args = Array.prototype.slice.apply(arguments).concat(cb);
+			var err;
+			var res;
+
+			fn.apply(this, args);
+			module.exports.loopWhile(function(){return !done;});
+			if (err)
+				throw err;
+
+			return res;
+
+			function cb(e, r) {
+				err = e;
+				res = r;
+				done = true;		
+			}
+		}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.queryable.prototype.find" id="apidoc.element.massive.queryable.prototype.find">
+        function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>find
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">find = function () {
+  var args = ArgTypes.findArgs(arguments, this);
+
+  if (typeof this.primaryKeyName === &#x27;function&#x27; &#x26;&#x26; Where.isPkSearch(args.conditions)) {
+    var newArgs = {};
+    newArgs[this.primaryKeyName()] = args.conditions;
+    args.conditions = newArgs;
+    args.query.single = true;
+  }
+
+  var where = _.isEmpty(args.conditions) ? {where: &#x22; &#x22;} : Where.forTable(args.conditions);
+  var sql = args.query.format(where.where);
+
+  if (args.query.stream) {
+    this.db.stream(sql, where.params, args.query, args.next);
+  } else {
+    this.db.query(sql, where.params, args.query, args.next);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+```javascript
+var massive = require(&#x22;massive&#x22;);
+
+//you can use db for &#x27;database name&#x27; running on localhost
+//or send in everything using &#x27;connectionString&#x27;
+massive.connect({db : &#x22;myDb&#x22;}, function(err,db){
+  db.myTable.<span class="apidocCodeKeywordSpan">find</span>();
+});
+```
+## Usage
+
+One of the key features of Massive is that it loads all of your tables, Postgres functions, and local query files up as functions
+ (this is really cool, you want this. See below for more info). Massive is fast, and does this quickly. However, there is a one-
+time execution penalty at intialization while all this happens. In most situations it makes sense to do this once, at application
+ load. From there, maintain a reference to the Massive instance (Massive was conceived with this usage in mind). For example, if
+ you are using Express as your application framework, you might do something like this:
+
+####Express Example
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.queryable.prototype.findOne" id="apidoc.element.massive.queryable.prototype.findOne">
+        function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>findOne
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">findOne = function () {
+  var args = ArgTypes.findArgs(arguments, this);
+
+  this.find(args.conditions, args.query, function(err,results) {
+    if (err) {
+      args.next(err,null);
+    } else {
+      var result;
+
+      if (_.isArray(results)) {
+        if (results.length &#x3e; 0) { result = results[0]; }
+      } else {
+        result = results;
+      }
+
+      args.next(null,result);
+    }
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  columns : [&#x22;sku&#x22;, &#x22;name&#x22;]
+}
+db.products.find({}, options, function(err,products){
+  // an array of sku and name
+});
+
+//find a single user by id
+db.users.<span class="apidocCodeKeywordSpan">findOne</span>(1, function(err,user){
+  //returns user with id (or whatever your PK is) of 1
+});
+
+//another way to do the above
+db.users.find(1, function(err,user){
+  //returns user with id (or whatever your PK is) of 1
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.queryable.prototype.findOneSync" id="apidoc.element.massive.queryable.prototype.findOneSync">
+        function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>findOneSync
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">findOneSync = function () {
+			var done = false;
+			var args = Array.prototype.slice.apply(arguments).concat(cb);
+			var err;
+			var res;
+
+			fn.apply(this, args);
+			module.exports.loopWhile(function(){return !done;});
+			if (err)
+				throw err;
+
+			return res;
+
+			function cb(e, r) {
+				err = e;
+				res = r;
+				done = true;		
+			}
+		}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```
+
+## Synchronous Methods
+
+Just about every method in Massive has a synchronous counterpart using [the deasync library](https://github.com/vkurchatkin/deasync
+). These methods are here for convenience when you&#x27;re not worried about I/O and just want to move some data around without
+a callback mess.
+
+```js
+var myUser = db.users.<span class="apidocCodeKeywordSpan">findOneSync</span>({id : 1});
+```
+
+## We &#x3c;3 Functions
+
+Got a ~~tightly-wound~~ super-concientous DBA who ~~micro-manages~~ carefully limits developer access to the back end store? Feel
+ bold, adventurous, and [unconstrained by popular dogma](http://rob.conery.io/2015/02/21/its-time-to-get-over-that-stored-procedure
+-aversion-you-have/) about database functions/stored procedures? Unafraid to be called names by your less-enlightened friends?
+
+Massive treats Postgres functions (&#x22;sprocs&#x22;) as first-class citizens.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.queryable.prototype.findSync" id="apidoc.element.massive.queryable.prototype.findSync">
+        function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>findSync
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">findSync = function () {
+			var done = false;
+			var args = Array.prototype.slice.apply(arguments).concat(cb);
+			var err;
+			var res;
+
+			fn.apply(this, args);
+			module.exports.loopWhile(function(){return !done;});
+			if (err)
+				throw err;
+
+			return res;
+
+			function cb(e, r) {
+				err = e;
+				res = r;
+				done = true;		
+			}
+		}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.queryable.prototype.search" id="apidoc.element.massive.queryable.prototype.search">
+        function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>search
+        <span class="apidocSignatureSpan">(args, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">search = function (args, next){
+  //search expects a columns array and the term
+  assert(args.columns &#x26;&#x26; args.term, &#x22;Need columns as an array and a term string&#x22;);
+
+  if(!_.isArray(args.columns)){
+    args.columns = [args.columns];
+  }
+
+  var tsv;
+  var vectorFormat = &#x27;to_tsvector(&#x22;%s&#x22;)&#x27;;
+  if(args.columns.length === 1){
+    tsv = util.format(&#x22;%s&#x22;, args.columns[0]);
+  }else{
+    vectorFormat = &#x27;to_tsvector(%s)&#x27;;
+    tsv= util.format(&#x22;concat(&#x27;%s&#x27;)&#x22;, args.columns.join(&#x22;, &#x27;, &#x27;&#x22;));
+  }
+  var sql = &#x22;select * from &#x22; + this.delimitedFullName + &#x22; where &#x22; + util.format(vectorFormat, tsv);
+  sql+= &#x22; @@ to_tsquery($1);&#x22;;
+
+  this.db.query(sql, [args.term],next);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+The goal with this API is expressiveness and terseness - allowing you to think as little as possible about accessing your data.
+
+## Full Text Search Built In
+
+If you need to query a table or a document store using Postgres&#x27; built-in Full Text Indexing, you certainly can. Just use `
+search` or `searchDoc` and we&#x27;ll build the index on the fly:
+
+```javascript
+db.users.<span class="apidocCodeKeywordSpan">search</span>({columns :[&#x22;email&#x22;], term: &#x22;rob&#x22;}, function(err,users
+){
+  //all users with the word &#x27;rob&#x27; in their email
+});
+```
+
+This works the same for documents as well (more on documents in next section):
+
+```javascript
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.queryable.prototype.searchSync" id="apidoc.element.massive.queryable.prototype.searchSync">
+        function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>searchSync
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">searchSync = function () {
+			var done = false;
+			var args = Array.prototype.slice.apply(arguments).concat(cb);
+			var err;
+			var res;
+
+			fn.apply(this, args);
+			module.exports.loopWhile(function(){return !done;});
+			if (err)
+				throw err;
+
+			return res;
+
+			function cb(e, r) {
+				err = e;
+				res = r;
+				done = true;		
+			}
+		}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.queryable.prototype.where" id="apidoc.element.massive.queryable.prototype.where">
+        function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>where
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">where = function (){
+  var args = ArgTypes.whereArgs(arguments, this);
+
+  var sql = args.query.format(&#x22;where &#x22; + args.where);
+
+  this.db.query(sql, args.params, args.next);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+//straight up SQL
+db.run(&#x22;select * from products where id=$1&#x22;, [1], function(err,product){
+  //product 1
+});
+
+//simplified SQL with a where
+db.products.<span class="apidocCodeKeywordSpan">where</span>(&#x22;id=$1 OR id=$2&#x22;, [10,21], function(err,products){
+  //products 10 and 21
+});
+
+//an IN query
+db.products.find({id : [10,21]}, function(err,products){
+  //products 10 and 21
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.queryable.prototype.whereSync" id="apidoc.element.massive.queryable.prototype.whereSync">
+        function <span class="apidocSignatureSpan">massive.queryable.prototype.</span>whereSync
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">whereSync = function () {
+			var done = false;
+			var args = Array.prototype.slice.apply(arguments).concat(cb);
+			var err;
+			var res;
+
+			fn.apply(this, args);
+			module.exports.loopWhile(function(){return !done;});
+			if (err)
+				throw err;
+
+			return res;
+
+			function cb(e, r) {
+				err = e;
+				res = r;
+				done = true;		
+			}
+		}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.massive.runner" id="apidoc.module.massive.runner">module massive.runner</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.massive.runner.runner" id="apidoc.element.massive.runner.runner">
+        function <span class="apidocSignatureSpan">massive.</span>runner
+        <span class="apidocSignatureSpan">(connectionString, defaults)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">runner = function (connectionString, defaults) {
+  this.connectionString = connectionString;
+  this.defaults = defaults;
+
+  if (defaults) {
+    _.each(defaults, function (v, k) {
+      pg.defaults[k] = v;
+    });
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.massive.runner.prototype" id="apidoc.module.massive.runner.prototype">module massive.runner.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.massive.runner.prototype.end" id="apidoc.element.massive.runner.prototype.end">
+        function <span class="apidocSignatureSpan">massive.runner.prototype.</span>end
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">end = function (){
+  pg.end();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var self = this;
+  var fileSql = fs.readFileSync(args.file, {encoding: &#x27;utf-8&#x27;});
+  self.query({sql:fileSql, params: args.params, next: next});
+};
+
+// close connections immediately
+DB.prototype.end = function(){
+  pg.<span class="apidocCodeKeywordSpan">end</span>();
+};
+
+module.exports = DB;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.runner.prototype.executeSqlFile" id="apidoc.element.massive.runner.prototype.executeSqlFile">
+        function <span class="apidocSignatureSpan">massive.runner.prototype.</span>executeSqlFile
+        <span class="apidocSignatureSpan">(args, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">executeSqlFile = function (args, next){
+  var self = this;
+  var fileSql = fs.readFileSync(args.file, {encoding: &#x27;utf-8&#x27;});
+  self.query({sql:fileSql, params: args.params, next: next});
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  // ONLY allow whitelisted items:
+  if(this.whitelist) {
+tableSql = __dirname + &#x22;/lib/scripts/whitelist.sql&#x22;;
+parameters = [this.whitelist];
+  }
+
+  this.<span class="apidocCodeKeywordSpan">executeSqlFile</span>({file : tableSql, params: parameters}, function(err, tables) {
+if (err) { return next(err, null); }
+
+_.each(tables, function(table){
+  var _table = new Table({
+    schema : table.schema,
+    name : table.name,
+    pk : table.pk,
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.runner.prototype.query" id="apidoc.element.massive.runner.prototype.query">
+        function <span class="apidocSignatureSpan">massive.runner.prototype.</span>query
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">query = function () {
+  //we expect sql, options, params and a callback
+  var args = ArgTypes.queryArgs(arguments);
+  var e = new Error();  // initialize error object before we do any async stuff to get a useful stacktrace
+
+  //check to see if the params are an array, which they need to be
+  //for the pg module
+  if(_.isObject(args.params)){
+    //we only need the values from the object,
+    //so swap it out
+    args.params = _.values(args.params);
+  }
+
+  //weird param bug that will mess up multiple statements
+  //with the pg_node driver
+  if(args.params === [{}]) args.params = [];
+
+  pg.connect(this.connectionString, function (err, db, done) {
+    if (err) {
+      done();
+
+      return args.next(err,null);
+    }
+
+    db.query(args.sql, args.params, function (err, result) {
+      //we have the results, release the connection
+      done();
+
+      if (err) {
+        //DO NOT THROW if there&#x27;s a query error
+        //bubble it up
+        //handle if it&#x27;s that annoying parameter issue
+        //wish I could find a way to deal with this
+        if (err.toString().indexOf(&#x22;there is no parameter&#x22;) &#x3e; -1) {
+          e.message = &#x22;You need to wrap your parameter into an array&#x22;;
+        } else {
+          e.message = err.message || err.toString();
+          e.code = err.code;
+          e.detail = err.detail;
+        }
+
+        args.next(_.defaults(e, err), null);
+      } else {
+        //only return one result if single is sent in
+        if (args.options.single) {
+          result.rows = result.rows.length &#x3e;= 0 ? result.rows[0] : null;
+        }
+
+        args.next(null, result.rows);
+      }
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    }
+  }
+  return result;
+};
+
+Massive.prototype.run = function(){
+  var args = ArgTypes.queryArgs(arguments);
+  this.<span class="apidocCodeKeywordSpan">query</span>(args);
+};
+Massive.prototype.runSync = DA(Massive.prototype.run);
+
+Massive.prototype.loadQueries = function() {
+  walkSqlFiles(this, this.scriptsDir);
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.runner.prototype.stream" id="apidoc.element.massive.runner.prototype.stream">
+        function <span class="apidocSignatureSpan">massive.runner.prototype.</span>stream
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">stream = function () {
+  //we expect sql, options, params and a callback
+  var args = ArgTypes.queryArgs(arguments);
+
+  //check to see if the params are an array, which they need to be
+  //for the pg module
+  if(_.isObject(args.params)){
+    //we only need the values from the object,
+    //so swap it out
+    args.params = _.values(args.params);
+  }
+
+  //weird param bug that will mess up multiple statements
+  //with the pg_node driver
+  if(args.params === [{}]) args.params = [];
+
+  pg.connect(this.connectionString, function (err, db, done) {
+    if (err) {
+      done();
+
+      return args.next(err,null);
+    }
+
+    var query = new QueryStream(args.sql, args.params);
+
+    var stream = db.query(query);
+
+    stream.on(&#x27;end&#x27;, done);
+
+    args.next(null, stream);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// console.log(&#x22;invoke opts: &#x22;, opts);
+// console.log(&#x22;invoke params: &#x22;, params);
+
+var singleRow = this.singleRow &#x26;&#x26; !opts.stream;
+var singleValue = this.singleValue;
+
+if (opts.stream) {
+  this.db.<span class="apidocCodeKeywordSpan">stream</span>(this.sql, params, null, function (err, stream) {
+    if (err) return next(err);
+    if (singleValue) {
+      var singleValueTransform = SingleValueStream();
+      return next(null, stream.pipe(singleValueTransform));
+    } else {
+      return next(null, stream);
+    }
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.massive.table" id="apidoc.module.massive.table">module massive.table</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.massive.table.table" id="apidoc.element.massive.table.table">
+        function <span class="apidocSignatureSpan">massive.</span>table
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">table = function (args) {
+  Queryable.apply(this, arguments);
+
+  this.pk = args.pk;
+
+  _.extend(this,DocumentTable);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.table.super_" id="apidoc.element.massive.table.super_">
+        function <span class="apidocSignatureSpan">massive.table.</span>super_
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">super_ = function () {
+  Entity.apply(this, arguments);
+
+  // create delimited names now instead of at query time
+  this.delimitedName = &#x22;\&#x22;&#x22; + this.name + &#x22;\&#x22;&#x22;;
+  this.delimitedSchema = &#x22;\&#x22;&#x22; + this.schema + &#x22;\&#x22;&#x22;;
+
+  // handle naming when schema is other than public:
+  if(this.schema !== &#x22;public&#x22;) {
+    this.fullname = this.schema + &#x22;.&#x22; + this.name;
+    this.delimitedFullName = this.delimitedSchema + &#x22;.&#x22; + this.delimitedName;
+  } else {
+    this.fullname = this.name;
+    this.delimitedFullName = this.delimitedName;
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.massive.table.prototype" id="apidoc.module.massive.table.prototype">module massive.table.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.massive.table.prototype.containsPk" id="apidoc.element.massive.table.prototype.containsPk">
+        function <span class="apidocSignatureSpan">massive.table.prototype.</span>containsPk
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">containsPk = function (args){
+  var keys = _.keys(args);
+  return (keys.indexOf(this.primaryKeyName()) &#x3e; -1) || (keys.indexOf(this.delimitedPrimaryKeyName()) &#x3e; -1);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var keys = _.keys(args);
+  return (keys.indexOf(this.primaryKeyName()) &#x3e; -1) || (keys.indexOf(this.delimitedPrimaryKeyName()) &#x3e; -1);
+};
+
+Table.prototype.save = function(args, next){
+  assert(_.isObject(args), &#x22;Please pass in the criteria for saving as an object. This should include all fields needed to change
+ or add. Include the primary key for an UPDATE.&#x22;);
+
+  if(this.<span class="apidocCodeKeywordSpan">containsPk</span>(args)){
+    this.update(args,next);
+  }else{
+    this.insert(args,next);
+  }
+};
+Table.prototype.saveSync = DA(Table.prototype.save);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.table.prototype.delimitedPrimaryKeyName" id="apidoc.element.massive.table.prototype.delimitedPrimaryKeyName">
+        function <span class="apidocSignatureSpan">massive.table.prototype.</span>delimitedPrimaryKeyName
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">delimitedPrimaryKeyName = function () {
+  return util.format(&#x27;&#x22;%s&#x22;&#x27;, this.pk);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Table.prototype.delimitedPrimaryKeyName = function() {
+return util.format(&#x27;&#x22;%s&#x22;&#x27;, this.pk);
+};
+
+Table.prototype.containsPk = function(args){
+var keys = _.keys(args);
+return (keys.indexOf(this.primaryKeyName()) &#x3e; -1) || (keys.indexOf(this.<span class="apidocCodeKeywordSpan">delimitedPrimaryKeyName
+</span>()) &#x3e; -1);
+};
+
+Table.prototype.save = function(args, next){
+assert(_.isObject(args), &#x22;Please pass in the criteria for saving as an object. This should include all fields needed to change
+ or add. Include the primary key for an UPDATE.&#x22;);
+
+if(this.containsPk(args)){
+  this.update(args,next);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.table.prototype.destroy" id="apidoc.element.massive.table.prototype.destroy">
+        function <span class="apidocSignatureSpan">massive.table.prototype.</span>destroy
+        <span class="apidocSignatureSpan">(args, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">destroy = function (args, next){
+  assert(_.isObject(args), &#x22;Please pass in the criteria for deleting. This should be in object format - {id : 1} for example&#x22;);
+  var sql = &#x22;DELETE FROM ONLY &#x22; + this.delimitedFullName;
+  var where = {};
+
+  if (Object.keys(args).length &#x3e; 0) {
+    where = Where.forTable(args);
+    sql += where.where;
+  }
+
+  sql += &#x22; RETURNING *&#x22;;
+  this.db.query(sql, where.params, next);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.table.prototype.destroySync" id="apidoc.element.massive.table.prototype.destroySync">
+        function <span class="apidocSignatureSpan">massive.table.prototype.</span>destroySync
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">destroySync = function () {
+			var done = false;
+			var args = Array.prototype.slice.apply(arguments).concat(cb);
+			var err;
+			var res;
+
+			fn.apply(this, args);
+			module.exports.loopWhile(function(){return !done;});
+			if (err)
+				throw err;
+
+			return res;
+
+			function cb(e, r) {
+				err = e;
+				res = r;
+				done = true;		
+			}
+		}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.table.prototype.insert" id="apidoc.element.massive.table.prototype.insert">
+        function <span class="apidocSignatureSpan">massive.table.prototype.</span>insert
+        <span class="apidocSignatureSpan">(data, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">insert = function (data, next) {
+  var returnSingle = false;
+
+  if (!data) {
+    return next(new Error(&#x22;insert should be called with data&#x22;));
+  } else if (!_.isArray(data)) {
+    returnSingle = true;
+    data = [data];
+  } else if (data.length === 0) {
+    return next(null, []);  // just return empty arrays so bulk inserting variable-length lists is more friendly
+  }
+
+  var delimitedColumnNames = _.map(_.keys(data[0]), function(key){return util.format(&#x27;&#x22;%s&#x22;&#x27;, key);});
+  var sql = util.format(&#x22;INSERT INTO %s (%s) VALUES\n&#x22;, this.delimitedFullName, delimitedColumnNames.join(&#x22;, &#x22;));
+  var parameters = [];
+  var values = [];
+  var fn = function() { return &#x22;$&#x22; + (++seed); };
+
+  for(var i = 0, seed = 0; i &#x3c; data.length; ++i) {
+    var v = _.map(data[i], fn);
+    values.push(util.format(&#x27;(%s)&#x27;, v.join(&#x27;, &#x27;)));
+    parameters.push(_.values(data[i]));
+  }
+  sql += values.join(&#x22;,\n&#x22;);
+  sql += &#x22; RETURNING *&#x22;;
+  this.db.query(sql, _.flatten(parameters, true), {single : returnSingle}, next);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Table.prototype.save = function(args, next){
+assert(_.isObject(args), &#x22;Please pass in the criteria for saving as an object. This should include all fields needed to change
+ or add. Include the primary key for an UPDATE.&#x22;);
+
+if(this.containsPk(args)){
+  this.update(args,next);
+}else{
+  this.<span class="apidocCodeKeywordSpan">insert</span>(args,next);
+}
+};
+Table.prototype.saveSync = DA(Table.prototype.save);
+
+Table.prototype.destroy = function(args, next){
+assert(_.isObject(args), &#x22;Please pass in the criteria for deleting. This should be in object format - {id : 1} for example&#
+x22;);
+var sql = &#x22;DELETE FROM ONLY &#x22; + this.delimitedFullName;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.table.prototype.insertSync" id="apidoc.element.massive.table.prototype.insertSync">
+        function <span class="apidocSignatureSpan">massive.table.prototype.</span>insertSync
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">insertSync = function () {
+			var done = false;
+			var args = Array.prototype.slice.apply(arguments).concat(cb);
+			var err;
+			var res;
+
+			fn.apply(this, args);
+			module.exports.loopWhile(function(){return !done;});
+			if (err)
+				throw err;
+
+			return res;
+
+			function cb(e, r) {
+				err = e;
+				res = r;
+				done = true;		
+			}
+		}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.table.prototype.primaryKeyName" id="apidoc.element.massive.table.prototype.primaryKeyName">
+        function <span class="apidocSignatureSpan">massive.table.prototype.</span>primaryKeyName
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">primaryKeyName = function (){
+  return this.pk;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+this.executeDocQuery(sql, params, args.options, args.next);
+};
+exports.searchDocSync = DA(this.searchDoc);
+
+exports.saveDoc = function(args, next) {
+assert(_.isObject(args), &#x22;Please pass in the document for saving as an object. Include the primary key for an UPDATE.&#x22;);
+var sql, params = [];
+var pkName = this.<span class="apidocCodeKeywordSpan">primaryKeyName</span>();
+var pkVal = args[pkName];
+
+// if there&#x27;s a primary key, don&#x27;t store it in the body as well
+params.push(JSON.stringify(_.omit(args, pkName)));
+
+if (pkVal) {
+  sql = util.format(&#x22;update %s set body = $1 where %s = $2 returning *;&#x22;, this.fullname, pkName);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.table.prototype.save" id="apidoc.element.massive.table.prototype.save">
+        function <span class="apidocSignatureSpan">massive.table.prototype.</span>save
+        <span class="apidocSignatureSpan">(args, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">save = function (args, next){
+  assert(_.isObject(args), &#x22;Please pass in the criteria for saving as an object. This should include all fields needed to change
+ or add. Include the primary key for an UPDATE.&#x22;);
+
+  if(this.containsPk(args)){
+    this.update(args,next);
+  }else{
+    this.insert(args,next);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+//simple query
+db.users.find({active: true}, function(err,users){
+  //all users who are active
+});
+
+//include the PK in the criteria for an update
+db.users.<span class="apidocCodeKeywordSpan">save</span>({id : 1, email : &#x22;test@example.com&#x22;}, function(err,updated){
+  //the updated record for the new user
+});
+
+//no PK does an INSERT
+db.users.save({email : &#x22;new@example.com&#x22;}, function(err,inserted){
+  //the new record with the ID
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.table.prototype.saveSync" id="apidoc.element.massive.table.prototype.saveSync">
+        function <span class="apidocSignatureSpan">massive.table.prototype.</span>saveSync
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">saveSync = function () {
+			var done = false;
+			var args = Array.prototype.slice.apply(arguments).concat(cb);
+			var err;
+			var res;
+
+			fn.apply(this, args);
+			module.exports.loopWhile(function(){return !done;});
+			if (err)
+				throw err;
+
+			return res;
+
+			function cb(e, r) {
+				err = e;
+				res = r;
+				done = true;		
+			}
+		}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.table.prototype.search" id="apidoc.element.massive.table.prototype.search">
+        function <span class="apidocSignatureSpan">massive.table.prototype.</span>search
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">search = function (){
+  var args = ArgTypes.searchArgs(arguments, this);
+
+  //search expects a columns array and the term
+  assert(args.fields.columns &#x26;&#x26; args.fields.term, &#x22;Need columns as an array and a term string&#x22;);
+  var params = [args.fields.term];
+  if(!_.isArray(args.fields.columns)){
+    args.fields.columns = [args.fields.columns];
+  }
+  var tsv;
+  var vectorFormat = &#x27;to_tsvector(&#x22;%s&#x22;)&#x27;;
+  if(args.fields.columns.length === 1){
+    tsv = util.format(&#x22;%s&#x22;, args.fields.columns[0]);
+    if(args.fields.columns[0].indexOf(&#x27;&#x3e;&#x3e;&#x27;) !== -1){
+      vectorFormat = &#x27;to_tsvector(%s)&#x27;;
+    }
+  }else{
+    vectorFormat = &#x27;to_tsvector(%s)&#x27;;
+    tsv= util.format(&#x22;concat(%s)&#x22;, args.fields.columns.join(&#x22;, &#x27; &#x27;, &#x22;));
+  }
+
+  var whereString = &#x22;&#x22;;
+  if (args.fields.where) {
+    var where = Where.forTable(args.fields.where, &#x27;predicate&#x27;, 1, &#x22; AND &#x22;);
+    whereString = where.where;
+    params = params.concat(where.params);
+  }
+  var sql = args.query.format(util.format(&#x22; WHERE &#x22; + vectorFormat + &#x22; @@ to_tsquery($1) %s&#x22;, tsv, whereString));
+  this.db.query(sql, params, args.options, args.next);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+The goal with this API is expressiveness and terseness - allowing you to think as little as possible about accessing your data.
+
+## Full Text Search Built In
+
+If you need to query a table or a document store using Postgres&#x27; built-in Full Text Indexing, you certainly can. Just use `
+search` or `searchDoc` and we&#x27;ll build the index on the fly:
+
+```javascript
+db.users.<span class="apidocCodeKeywordSpan">search</span>({columns :[&#x22;email&#x22;], term: &#x22;rob&#x22;}, function(err,users
+){
+  //all users with the word &#x27;rob&#x27; in their email
+});
+```
+
+This works the same for documents as well (more on documents in next section):
+
+```javascript
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.table.prototype.searchSync" id="apidoc.element.massive.table.prototype.searchSync">
+        function <span class="apidocSignatureSpan">massive.table.prototype.</span>searchSync
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">searchSync = function () {
+			var done = false;
+			var args = Array.prototype.slice.apply(arguments).concat(cb);
+			var err;
+			var res;
+
+			fn.apply(this, args);
+			module.exports.loopWhile(function(){return !done;});
+			if (err)
+				throw err;
+
+			return res;
+
+			function cb(e, r) {
+				err = e;
+				res = r;
+				done = true;		
+			}
+		}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.table.prototype.update" id="apidoc.element.massive.table.prototype.update">
+        function <span class="apidocSignatureSpan">massive.table.prototype.</span>update
+        <span class="apidocSignatureSpan">(conditions, fields, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">update = function (conditions, fields, next) {
+  var hasConditions = true;
+  var options = {};
+
+  if (_.isFunction(fields)) {
+    var pkName = this.primaryKeyName();
+
+    hasConditions = false;
+    next = fields;
+    fields = conditions;
+    conditions = {};
+
+    conditions[pkName] = fields[pkName];
+
+    fields = _.omit(fields, function(value, key, object) {
+      return _.isFunction(object[key]) || key === pkName;
+    });
+
+    options.single = true;
+  }
+
+  assert(_.isObject(fields), &#x22;Update requires a hash of fields=&#x3e;values to update to&#x22;);
+
+  if (_.isEmpty(fields)) {
+    // there&#x27;s nothing to update, so just return the matching records
+    if (options.single) {
+      return this.findOne(conditions, next);
+    } else {
+      return this.find(conditions, next);
+    }
+  }
+
+  var parameters = [];
+  var f = [];
+  var seed = 0;
+
+  _.each(fields, function(value, key) {
+    f.push(util.format(&#x27;&#x22;%s&#x22; = $%s&#x27;, key, (++seed)));
+    parameters.push(value);
+  });
+
+  var sql = util.format(&#x22;UPDATE ONLY %s SET %s&#x22;, this.delimitedFullName, f.join(&#x27;, &#x27;));
+
+  if (!hasConditions || !_.isEmpty(conditions)) {
+    var parsedWhere = Where.forTable(conditions, parameters.length);
+
+    sql += parsedWhere.where;
+  }
+
+  sql += &#x22; RETURNING *&#x22;;
+
+  parameters = parameters.concat(
+    _.chain(conditions)
+    .values()
+    .flatten()
+    .without(null)  // nulls are inlined in the WHERE
+    .value()
+  );
+
+  this.db.query(sql, parameters, options, next);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  return (keys.indexOf(this.primaryKeyName()) &#x3e; -1) || (keys.indexOf(this.delimitedPrimaryKeyName()) &#x3e; -1);
+};
+
+Table.prototype.save = function(args, next){
+  assert(_.isObject(args), &#x22;Please pass in the criteria for saving as an object. This should include all fields needed to change
+ or add. Include the primary key for an UPDATE.&#x22;);
+
+  if(this.containsPk(args)){
+    this.<span class="apidocCodeKeywordSpan">update</span>(args,next);
+  }else{
+    this.insert(args,next);
+  }
+};
+Table.prototype.saveSync = DA(Table.prototype.save);
+
+Table.prototype.destroy = function(args, next){
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.table.prototype.updateSync" id="apidoc.element.massive.table.prototype.updateSync">
+        function <span class="apidocSignatureSpan">massive.table.prototype.</span>updateSync
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">updateSync = function () {
+			var done = false;
+			var args = Array.prototype.slice.apply(arguments).concat(cb);
+			var err;
+			var res;
+
+			fn.apply(this, args);
+			module.exports.loopWhile(function(){return !done;});
+			if (err)
+				throw err;
+
+			return res;
+
+			function cb(e, r) {
+				err = e;
+				res = r;
+				done = true;		
+			}
+		}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.massive.where" id="apidoc.module.massive.where">module massive.where</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.massive.where.docPredicate" id="apidoc.element.massive.where.docPredicate">
+        function <span class="apidocSignatureSpan">massive.where.</span>docPredicate
+        <span class="apidocSignatureSpan">(result, condition, value, conditions)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">docPredicate = function (result, condition, value, conditions) {
+  //if we have an array of objects, this is a deep traversal
+  //we&#x27;ll need to use a contains query to be sure we flex the index
+  if(_.isArray(value) &#x26;&#x26; _.isObject(value[0])) {
+    //stringify the passed-in params
+    result.params.push(JSON.stringify(conditions));
+    result.predicates.push(util.format(&#x22;body @&#x3e; $%s&#x22;, result.params.length + result.offset));
+  }
+
+  //if we have equality here, just use a JSON contains
+  else if (condition.operator === &#x27;=&#x27; &#x26;&#x26; !_.isArray(value)) {
+    //parse the value into stringy JSON
+    var param = {};
+    param[condition.field]=value;
+    result.params.push(JSON.stringify(param));
+    result.predicates.push(util.format(&#x22;body @&#x3e; $%s&#x22;, result.params.length + result.offset));
+    return result;
+  }
+
+  //comparison stuff - same as method above but this time
+  //we&#x27;ll be coercing the document key values using pg&#x27;s ::
+  //not ideal, but it works nicely
+  else if (_.isBoolean(value)) {
+    result.predicates.push(
+      util.format(&#x22;(body -&#x3e;&#x3e; &#x27;%s&#x27;)::boolean %s %s&#x22;, condition.field, condition.operator, value)
+    );
+  } else if(_.isDate(value)) {
+    result.params.push(value);
+    result.predicates.push(
+      util.format(&#x22;(body -&#x3e;&#x3e; &#x27;%s&#x27;)::timestamp %s $%d&#x22;,
+        condition.field,
+        condition.operator,
+        result.params.length + result.offset)
+    );
+  } else if(_.isNumber(value)) {
+    result.predicates.push(
+      util.format(&#x22;(body -&#x3e;&#x3e; &#x27;%s&#x27;)::decimal %s %d&#x22;, condition.field, condition.operator, value)
+    );
+  }
+
+  //anything non-array handling
+  else if (!_.isArray(value)) {
+    result.params.push(value);
+    result.predicates.push(
+      util.format(&#x22;(body -&#x3e;&#x3e; &#x27;%s&#x27;) %s $%s&#x22;,
+        condition.field,
+        condition.operator,
+        result.params.length + result.offset)
+    );
+  } else {
+    var arrayConditions = [];
+
+    _.each(value, function(v) {
+      result.params.push(v);
+      arrayConditions.push(&#x22;$&#x22; + (result.params.length + result.offset));
+    });
+
+    condition.operator = condition.operator === &#x27;=&#x27; ? &#x27;IN&#x27; : &#x27;NOT IN&#x27;;
+
+    result.predicates.push(
+      util.format(&#x22;(body -&#x3e;&#x3e; &#x27;%s&#x27;) %s (%s)&#x22;,
+        condition.field,
+        condition.operator,
+        arrayConditions.join(&#x27;, &#x27;))
+    );
+  }
+
+  return result;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.where.forTable" id="apidoc.element.massive.where.forTable">
+        function <span class="apidocSignatureSpan">massive.where.</span>forTable
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">forTable = function () {
+  var args = ArgTypes.forArgs(arguments);
+
+  if (_.isEmpty(args.conditions)) {
+    return {
+      where: args.prefix + &#x27;TRUE&#x27;,
+      params: []
+    };
+  }
+
+  var result = exports.generate({
+    params: [],
+    predicates: [],
+    offset: args.placeholderOffset
+  }, args.conditions, args.generator);
+
+  return {
+    where: args.prefix + result.predicates.join(&#x27; \nAND &#x27;),
+    params: result.params
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    if (keys.length === 1) {
+var operator = keys[0].match(&#x22;&#x3c;=|&#x3e;=|!=|&#x3c;&#x3e;|=|&#x3c;|&#x3e;&#x22;);
+var property = keys[0].replace(operator, &#x22;&#x22;).trim();
+if (property == this.primaryKeyName()) {
+  // this is a query against the PK...we can use the
+  // plain old table &#x22;where&#x22; builder:
+  where = Where.<span class="apidocCodeKeywordSpan">forTable</span>(conditions, &#x27;predicate&#x27;, offset, prefix);
+
+  // only a true pk query if testing equality
+  if ((operator === null || operator === &#x22;=&#x22;) &#x26;&#x26; !_.isObject(conditions[keys[0]])) {
+    where.pkQuery = true;
+  }
+} else {
+  where = Where.forTable(conditions, &#x27;docPredicate&#x27;, offset, prefix);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.where.generate" id="apidoc.element.massive.where.generate">
+        function <span class="apidocSignatureSpan">massive.where.</span>generate
+        <span class="apidocSignatureSpan">(result, conditions, generator)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">generate = function (result, conditions, generator) {
+  _.each(conditions, function(value, key) {
+    var condition = exports.parseKey(key);
+
+    if (condition.field === &#x27;or&#x27;) {
+      if (!_.isArray(value)) { value = [value]; }
+
+      var groupResult = _.reduce(value, function (acc, v) {
+        // assemble predicates for each subgroup in this &#x27;or&#x27; array
+        var subResult = exports.generate({
+          params: [],
+          predicates: [],
+          offset: result.params.length + acc.offset   // ensure the offset from predicates outside the subgroup is counted
+        }, v, generator);
+
+        // encapsulate and join the individual predicates with AND to create the complete subgroup predicate
+        acc.predicates.push(util.format(&#x27;(%s)&#x27;, subResult.predicates.join(&#x27; AND &#x27;)));
+        acc.params = acc.params.concat(subResult.params);
+        acc.offset += subResult.params.length;
+
+        return acc;
+      }, {
+        params: [],
+        predicates: [],
+        offset: result.offset
+      });
+
+      // join the compiled subgroup predicates with OR, encapsulate, and push the
+      // complex predicate (&#x22;((x = $1 AND y = $2) OR (z = $3))&#x22;) onto the result object
+      result.params = result.params.concat(groupResult.params);
+      result.predicates.push(util.format(&#x27;(%s)&#x27;, groupResult.predicates.join(&#x27; OR &#x27;)));
+    } else {
+      // no special behavior, just add this predicate and modify result in-place
+      result = exports[generator](result, condition, value, conditions);
+    }
+  });
+
+  return result;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    var condition = exports.parseKey(key);
+
+    if (condition.field === &#x27;or&#x27;) {
+      if (!_.isArray(value)) { value = [value]; }
+
+      var groupResult = _.reduce(value, function (acc, v) {
+// assemble predicates for each subgroup in this &#x27;or&#x27; array
+var subResult = exports.<span class="apidocCodeKeywordSpan">generate</span>({
+  params: [],
+  predicates: [],
+  offset: result.params.length + acc.offset   // ensure the offset from predicates outside the subgroup is counted
+}, v, generator);
+
+// encapsulate and join the individual predicates with AND to create the complete subgroup predicate
+acc.predicates.push(util.format(&#x27;(%s)&#x27;, subResult.predicates.join(&#x27; AND &#x27;)));
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.where.isPkSearch" id="apidoc.element.massive.where.isPkSearch">
+        function <span class="apidocSignatureSpan">massive.where.</span>isPkSearch
+        <span class="apidocSignatureSpan">(conditions)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">isPkSearch = function (conditions) {
+  return _.isNumber(conditions) || (_.isString(conditions) &#x26;&#x26; isUuid.test(conditions));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+if(_.isFunction(conditions) || conditions == &#x22;*&#x22;) {
+  // no criteria provided - treat like select *
+  where.where = &#x22;&#x22;;
+  where.params = [];
+  return where;
+}
+
+if (Where.<span class="apidocCodeKeywordSpan">isPkSearch</span>(conditions)) {
+  //assume it&#x27;s a search on ID
+  conditions = {id : conditions};
+}
+
+if (_.isObject(conditions)) {
+  var keys = _.keys(conditions);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.where.parseKey" id="apidoc.element.massive.where.parseKey">
+        function <span class="apidocSignatureSpan">massive.where.</span>parseKey
+        <span class="apidocSignatureSpan">(key)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseKey = function (key) {
+  // remove single quotes from JSON keys, then split on double quotes to break
+  // out &#x22;quoted field&#x22;s safely
+  var parts = strip(key.replace(/\&#x27;/g, &#x27;&#x27;).split(&#x27;&#x22;&#x27;)),
+    operation = getOp(key),
+    separators = [&#x27;::&#x27;, &#x27;\\-\\&#x3e;\\&#x3e;&#x27;,&#x27;\\#\\&#x3e;\\&#x3e;&#x27;],
+    re;
+
+  if (operation.key) {
+    // we found an operation, include the escaped key in the separators when we tokenize
+    separators.push(operation.key.replace(/([^a-zA-Z0-9\s])/g, &#x27;\\$1&#x27;));
+  }
+
+  // capture separators in output array
+  re = new RegExp(util.format(&#x22;(%s)&#x22;, separators.join(&#x27;|&#x27;)), &#x27;i&#x27;);
+
+  if (parts.length === 0) {
+    // the field wasn&#x27;t quoted, so parts[0] is the whole thing
+    parts = strip(parts[0].split(re));
+  } else {
+    // the field was quoted, so parts[0] is the full field name, but parts[1]
+    // may contain JSON traversal and/or operations so split it up on those
+    parts = parts.concat(strip(parts.pop().split(re)));
+  }
+
+  var field = parts.shift(),
+    quotedField;
+
+  if (parts[0] === &#x27;::&#x27;) {
+    // casting
+    var type = parts.shift() &#x26;&#x26; parts.shift();
+
+    quotedField = util.format(&#x27;&#x22;%s&#x22;::%s&#x27;, field, type);
+    field = util.format(&#x27;%s::%s&#x27;, field, type);
+  } else {
+    quotedField = util.format(&#x27;&#x22;%s&#x22;&#x27;, field);
+  }
+
+  if (parts[0] === &#x27;-&#x3e;&#x3e;&#x27; || parts[0] === &#x27;#&#x3e;&#x3e;&#x27;) {
+    // json operation. pull the op and key out and append them to the field.
+    var jsonOp = parts.shift();
+    var jsonKey = parts.shift();
+
+    // treat numeric json keys as array indices, otherwise quote it
+    if (isNaN(jsonKey)) { jsonKey = util.format(&#x22;&#x27;%s&#x27;&#x22;, jsonKey); }
+
+    quotedField = util.format(&#x27;%s%s%s&#x27;, quotedField, jsonOp, jsonKey);
+  }
+
+  return {
+    field: field,
+    quotedField: quotedField,
+    operator: operation.operator || &#x27;=&#x27;,
+    mutator: operation.mutator
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+
+  return result;
+};
+
+exports.generate = function (result, conditions, generator) {
+  _.each(conditions, function(value, key) {
+    var condition = exports.<span class="apidocCodeKeywordSpan">parseKey</span>(key);
+
+    if (condition.field === &#x27;or&#x27;) {
+if (!_.isArray(value)) { value = [value]; }
+
+var groupResult = _.reduce(value, function (acc, v) {
+  // assemble predicates for each subgroup in this &#x27;or&#x27; array
+  var subResult = exports.generate({
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.massive.where.predicate" id="apidoc.element.massive.where.predicate">
+        function <span class="apidocSignatureSpan">massive.where.</span>predicate
+        <span class="apidocSignatureSpan">(result, condition, value)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">predicate = function (result, condition, value) {
+  if (value === null) {
+    //interpolate nulls directly with is/is not
+    condition.operator = condition.operator === &#x27;=&#x27; ? &#x27;IS&#x27; : &#x27;IS NOT&#x27;;
+  } else if (condition.mutator || !_.isArray(value)) {
+    //parameterize any non-array or mutatey values
+    if (condition.mutator) { value = condition.mutator(value); }
+    result.params.push(value);
+    value = util.format(&#x22;$%s&#x22;, result.params.length + result.offset);
+  } else if (_.isArray(value)) {
+    var arrayConditions = [];
+
+    //loop the array
+    _.each(value, function(v) {
+      result.params.push(v);
+      arrayConditions.push(util.format(&#x22;$%s&#x22;, result.params.length + result.offset));
+    });
+
+    condition.operator = condition.operator === &#x27;=&#x27; ? &#x27;IN&#x27; : &#x27;NOT IN&#x27;;
+
+    value = util.format(&#x27;(%s)&#x27;, arrayConditions.join(&#x27;, &#x27;));
+  }
+
+  result.predicates.push(util.format(&#x27;%s %s %s&#x27;, condition.quotedField, condition.operator, value));
+
+  return result;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
