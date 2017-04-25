@@ -850,25 +850,21 @@
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-Once Massive is installed, you can use it by calling `connect` and passing in a callback which will give you your database instance
-:
+}else{
+  console.log(&#x22;The options to pass in are:&#x22;);
+  console.log(&#x22; -d or --database to connect locally to a database&#x22;);
+  console.log(&#x22; -c or --connection to enter the full connection string: postgres://user:password@server/tablename&#x22;);
+}
 
-```javascript
-var massive = require(&#x22;massive&#x22;);
-
-//you can use db for &#x27;database name&#x27; running on localhost
-//or send in everything using &#x27;connectionString&#x27;
-massive.<span class="apidocCodeKeywordSpan">connect</span>({db : &#x22;myDb&#x22;}, function(err,db){
-  db.myTable.find();
-});
-```
-## Usage
-
-One of the key features of Massive is that it loads all of your tables, Postgres functions, and local query files up as functions
- (this is really cool, you want this. See below for more info). Massive is fast, and does this quickly. However, there is a one-
-time execution penalty at intialization while all this happens. In most situations it makes sense to do this once, at application
- load. From there, maintain a reference to the Massive instance (Massive was conceived with this usage in mind). For example, if
- you are using Express as your application framework, you might do something like this:
+if(connectionString){
+  massive.<span class="apidocCodeKeywordSpan">connect</span>({connectionString : connectionString}, function(err,db){
+    var context = repl.start({
+      prompt: &#x22;db &#x3e; &#x22;
+    }).context;
+    context.db = db;
+    console.log(&#x22;Massive loaded and listening&#x22;);
+  });
+}
 ...</pre></li>
     </ul>
 
@@ -900,22 +896,7 @@ time execution penalty at intialization while all this happens. In most situatio
 				done = true;		
 			}
 		}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-var http = require(&#x27;http&#x27;);
-var massive = require(&#x22;massive&#x22;);
-var connectionString = &#x22;postgres://massive:password@localhost/chinook&#x22;;
-
-// connect to Massive and get the db instance. You can safely use the
-// convenience sync method here because its on app load
-// you can also use loadSync - it&#x27;s an alias
-var massiveInstance = massive.<span class="apidocCodeKeywordSpan">connectSync</span>({connectionString : connectionString})
-
-// Set a reference to the massive instance on Express&#x27; app:
-app.set(&#x27;db&#x27;, massiveInstance);
-http.createServer(app).listen(8080);
-```
-From there, accessing the db is just:
-...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -990,20 +971,21 @@ From there, accessing the db is just:
   this.single = args.single || false;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    }
-  }
-  return result;
+
+return where;
 };
 
-Massive.prototype.run = function(){
-  var args = ArgTypes.queryArgs(arguments);
-  this.<span class="apidocCodeKeywordSpan">query</span>(args);
-};
-Massive.prototype.runSync = DA(Massive.prototype.run);
-
-Massive.prototype.loadQueries = function() {
-  walkSqlFiles(this, this.scriptsDir);
-};
+this.executeDocQuery = function() {
+var args = ArgTypes.queryArgs(arguments);
+var doc = {};
+this.db.<span class="apidocCodeKeywordSpan">query</span>(args.sql, args.params, args.options, function(err,res){
+  if(err){
+    args.next(err,null);
+  }else{
+    //only return one result if single is sent in
+    if(args.options.single){
+      doc = Document.formatDocument(res);
+    }else{
 ...</pre></li>
     </ul>
 
@@ -1206,21 +1188,21 @@ if (_.isEmpty(args.conditions)) {
   return args;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-      result = filter.join(&#x22;, &#x22;);
-    }
   }
-  return result;
+}
+
+return where;
 };
 
-Massive.prototype.run = function(){
-  var args = ArgTypes.<span class="apidocCodeKeywordSpan">queryArgs</span>(arguments);
-  this.query(args);
-};
-Massive.prototype.runSync = DA(Massive.prototype.run);
-
-Massive.prototype.loadQueries = function() {
-  walkSqlFiles(this, this.scriptsDir);
-};
+this.executeDocQuery = function() {
+var args = ArgTypes.<span class="apidocCodeKeywordSpan">queryArgs</span>(arguments);
+var doc = {};
+this.db.query(args.sql, args.params, args.options, function(err,res){
+  if(err){
+    args.next(err,null);
+  }else{
+    //only return one result if single is sent in
+    if(args.options.single){
 ...</pre></li>
     </ul>
 
@@ -1453,23 +1435,7 @@ var pkName = this.primaryKeyName();
 
   this.executeDocQuery(sql, where.params, args.options, args.next);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-
-db.saveDoc(&#x22;my_documents&#x22;, newDoc, function(err,res){
-  //the table my_documents was created on the fly
-  //res is the new document with an ID created for you
-});
-
-//you can now access the document right on the root
-db.my_documents.<span class="apidocCodeKeywordSpan">findDoc</span>(1, function(err,doc){
-  //you now have access to the doc
-});
-
-//run a &#x27;contains&#x27; query which flexes the index we created for you
-db.my_documents.findDoc({price : 99.00}, function(err,docs){
-  //1 or more documents returned
-});
-...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -1597,23 +1563,7 @@ this.executeDocQuery(sql, params, args.options, args.next);
 
   this.executeDocQuery(sql, params, {single : true}, next);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-price : 99.00,
-tags : [
-  {name : &#x22;Simplicity&#x22;, slug : &#x22;simple&#x22;},
-  {name : &#x22;Fun for All&#x22;, slug : &#x22;fun-for-all&#x22;}
-]
-};
-
-db.<span class="apidocCodeKeywordSpan">saveDoc</span>(&#x22;my_documents&#x22;, newDoc, function(err,res){
-//the table my_documents was created on the fly
-//res is the new document with an ID created for you
-});
-
-//you can now access the document right on the root
-db.my_documents.findDoc(1, function(err,doc){
-//you now have access to the doc
-...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -1687,22 +1637,7 @@ db.my_documents.findDoc(1, function(err,doc){
 
   this.executeDocQuery(sql, params, args.options, args.next);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-});
-```
-
-This works the same for documents as well (more on documents in next section):
-
-```javascript
-//full text search...
-db.my_documents.<span class="apidocCodeKeywordSpan">searchDoc</span>({
-  keys : [&#x22;title&#x22;, &#x22;description&#x22;],
-  term : &#x22;Kauai&#x22;
-}, function(err,docs){
-  //docs returned with an on-the-fly Full Text Search for &#x27;Kauai&#x27;
-});
-```
-...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -1949,20 +1884,21 @@ db.my_documents.<span class="apidocCodeKeywordSpan">searchDoc</span>({
   this.single = args.single || false;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    }
-  }
-  return result;
+
+return where;
 };
 
-Massive.prototype.run = function(){
-  var args = ArgTypes.queryArgs(arguments);
-  this.<span class="apidocCodeKeywordSpan">query</span>(args);
-};
-Massive.prototype.runSync = DA(Massive.prototype.run);
-
-Massive.prototype.loadQueries = function() {
-  walkSqlFiles(this, this.scriptsDir);
-};
+this.executeDocQuery = function() {
+var args = ArgTypes.queryArgs(arguments);
+var doc = {};
+this.db.<span class="apidocCodeKeywordSpan">query</span>(args.sql, args.params, args.options, function(err,res){
+  if(err){
+    args.next(err,null);
+  }else{
+    //only return one result if single is sent in
+    if(args.options.single){
+      doc = Document.formatDocument(res);
+    }else{
 ...</pre></li>
     </ul>
 
@@ -1986,21 +1922,22 @@ Massive.prototype.loadQueries = function() {
   return &#x22;SELECT &#x22; + this.selectList() + from + this.source + where + this.queryOptions();
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-};
-
-Massive.prototype.documentTableSql = function(tableName){
-var docSqlFile = __dirname + &#x22;/lib/scripts/create_document_table.sql&#x22;;
-var sql = fs.readFileSync(docSqlFile, {encoding: &#x27;utf-8&#x27;});
-
-var indexName = tableName.replace(&#x22;.&#x22;, &#x22;_&#x22;);
-sql = util.<span class="apidocCodeKeywordSpan">format</span>(sql, tableName, indexName, tableName, indexName, tableName);
-return sql;
-};
-
-
-Massive.prototype.dropTable = function(table, options, next) {
-var sql = this.dropTableSql(table, options);
-this.query(sql, function(err, res) {
+var params = [args.fields.term];
+//yuck full repetition here... fix me...
+if(!_.isArray(args.fields.keys)){
+  args.fields.keys = [args.fields.keys];
+}
+var tsv;
+if(args.fields.keys.length === 1){
+  tsv = util.<span class="apidocCodeKeywordSpan">format</span>(&#x22;(body -&#x3e;&#x3e; &#x27;%s&#x27;)&#x22;, args.fields.keys
+[0]);
+}else{
+  var formattedKeys = [];
+  _.each(args.fields.keys, function(key){
+    formattedKeys.push(util.format(&#x22;(body -&#x3e;&#x3e; &#x27;%s&#x27;)&#x22;, key));
+  });
+  tsv= util.format(&#x22;concat(%s)&#x22;, formattedKeys.join(&#x22;, &#x27; &#x27;,&#x22;));
+}
 ...</pre></li>
     </ul>
 
@@ -2274,24 +2211,20 @@ if (_.isObject(arguments[0])) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-```javascript
-var massive = require(&#x22;massive&#x22;);
+util.inherits(Queryable, Entity);
 
-//you can use db for &#x27;database name&#x27; running on localhost
-//or send in everything using &#x27;connectionString&#x27;
-massive.connect({db : &#x22;myDb&#x22;}, function(err,db){
-  db.myTable.<span class="apidocCodeKeywordSpan">find</span>();
-});
-```
-## Usage
+//a simple alias for returning a single record
+Queryable.prototype.findOne = function() {
+  var args = ArgTypes.findArgs(arguments, this);
 
-One of the key features of Massive is that it loads all of your tables, Postgres functions, and local query files up as functions
- (this is really cool, you want this. See below for more info). Massive is fast, and does this quickly. However, there is a one-
-time execution penalty at intialization while all this happens. In most situations it makes sense to do this once, at application
- load. From there, maintain a reference to the Massive instance (Massive was conceived with this usage in mind). For example, if
- you are using Express as your application framework, you might do something like this:
+  this.<span class="apidocCodeKeywordSpan">find</span>(args.conditions, args.query, function(err,results) {
+    if (err) {
+args.next(err,null);
+    } else {
+var result;
 
-####Express Example
+if (_.isArray(results)) {
+  if (results.length &#x3e; 0) { result = results[0]; }
 ...</pre></li>
     </ul>
 
@@ -2324,21 +2257,21 @@ time execution penalty at intialization while all this happens. In most situatio
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  columns : [&#x22;sku&#x22;, &#x22;name&#x22;]
 }
-db.products.find({}, options, function(err,products){
-  // an array of sku and name
-});
 
-//find a single user by id
-db.users.<span class="apidocCodeKeywordSpan">findOne</span>(1, function(err,user){
-  //returns user with id (or whatever your PK is) of 1
-});
+assert(_.isObject(fields), &#x22;Update requires a hash of fields=&#x3e;values to update to&#x22;);
 
-//another way to do the above
-db.users.find(1, function(err,user){
-  //returns user with id (or whatever your PK is) of 1
-});
+if (_.isEmpty(fields)) {
+  // there&#x27;s nothing to update, so just return the matching records
+  if (options.single) {
+    return this.<span class="apidocCodeKeywordSpan">findOne</span>(conditions, next);
+  } else {
+    return this.find(conditions, next);
+  }
+}
+
+var parameters = [];
+var f = [];
 ...</pre></li>
     </ul>
 
@@ -2370,27 +2303,7 @@ db.users.find(1, function(err,user){
 				done = true;		
 			}
 		}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-```
-
-## Synchronous Methods
-
-Just about every method in Massive has a synchronous counterpart using [the deasync library](https://github.com/vkurchatkin/deasync
-). These methods are here for convenience when you&#x27;re not worried about I/O and just want to move some data around without
-a callback mess.
-
-```js
-var myUser = db.users.<span class="apidocCodeKeywordSpan">findOneSync</span>({id : 1});
-```
-
-## We &#x3c;3 Functions
-
-Got a ~~tightly-wound~~ super-concientous DBA who ~~micro-manages~~ carefully limits developer access to the back end store? Feel
- bold, adventurous, and [unconstrained by popular dogma](http://rob.conery.io/2015/02/21/its-time-to-get-over-that-stored-procedure
--aversion-you-have/) about database functions/stored procedures? Unafraid to be called names by your less-enlightened friends?
-
-Massive treats Postgres functions (&#x22;sprocs&#x22;) as first-class citizens.
-...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -2455,23 +2368,21 @@ Massive treats Postgres functions (&#x22;sprocs&#x22;) as first-class citizens.
   this.db.query(sql, [args.term],next);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-The goal with this API is expressiveness and terseness - allowing you to think as little as possible about accessing your data.
+var _ = require(&#x27;underscore&#x27;)._;
+var util = require(&#x22;util&#x22;);
 
-## Full Text Search Built In
+function literalizeArray(arr) {
+if (!_.isArray(arr)) { return arr; }
 
-If you need to query a table or a document store using Postgres&#x27; built-in Full Text Indexing, you certainly can. Just use `
-search` or `searchDoc` and we&#x27;ll build the index on the fly:
+return util.format(&#x27;{%s}&#x27;, arr.map(function (v) {
+  if (v.<span class="apidocCodeKeywordSpan">search</span>(/[,{}]/) !== -1) { return util.format(&#x27;&#x22;%s&#x22;&#x27;, v); }
 
-```javascript
-db.users.<span class="apidocCodeKeywordSpan">search</span>({columns :[&#x22;email&#x22;], term: &#x22;rob&#x22;}, function(err,users
-){
-  //all users with the word &#x27;rob&#x27; in their email
-});
-```
+  return v;
+}).join(&#x27;,&#x27;));
+}
 
-This works the same for documents as well (more on documents in next section):
-
-```javascript
+exports = module.exports = {
+// basic comparison
 ...</pre></li>
     </ul>
 
@@ -2522,23 +2433,7 @@ This works the same for documents as well (more on documents in next section):
 
   this.db.query(sql, args.params, args.next);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-
-//straight up SQL
-db.run(&#x22;select * from products where id=$1&#x22;, [1], function(err,product){
-  //product 1
-});
-
-//simplified SQL with a where
-db.products.<span class="apidocCodeKeywordSpan">where</span>(&#x22;id=$1 OR id=$2&#x22;, [10,21], function(err,products){
-  //products 10 and 21
-});
-
-//an IN query
-db.products.find({id : [10,21]}, function(err,products){
-  //products 10 and 21
-});
-...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -2645,23 +2540,7 @@ module.exports = DB;
   var fileSql = fs.readFileSync(args.file, {encoding: &#x27;utf-8&#x27;});
   self.query({sql:fileSql, params: args.params, next: next});
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-
-  // ONLY allow whitelisted items:
-  if(this.whitelist) {
-tableSql = __dirname + &#x22;/lib/scripts/whitelist.sql&#x22;;
-parameters = [this.whitelist];
-  }
-
-  this.<span class="apidocCodeKeywordSpan">executeSqlFile</span>({file : tableSql, params: parameters}, function(err, tables) {
-if (err) { return next(err, null); }
-
-_.each(tables, function(table){
-  var _table = new Table({
-    schema : table.schema,
-    name : table.name,
-    pk : table.pk,
-...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -2727,20 +2606,21 @@ _.each(tables, function(table){
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    }
-  }
-  return result;
+
+return where;
 };
 
-Massive.prototype.run = function(){
-  var args = ArgTypes.queryArgs(arguments);
-  this.<span class="apidocCodeKeywordSpan">query</span>(args);
-};
-Massive.prototype.runSync = DA(Massive.prototype.run);
-
-Massive.prototype.loadQueries = function() {
-  walkSqlFiles(this, this.scriptsDir);
-};
+this.executeDocQuery = function() {
+var args = ArgTypes.queryArgs(arguments);
+var doc = {};
+this.db.<span class="apidocCodeKeywordSpan">query</span>(args.sql, args.params, args.options, function(err,res){
+  if(err){
+    args.next(err,null);
+  }else{
+    //only return one result if single is sent in
+    if(args.options.single){
+      doc = Document.formatDocument(res);
+    }else{
 ...</pre></li>
     </ul>
 
@@ -3120,23 +3000,7 @@ if (pkVal) {
     this.insert(args,next);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-
-//simple query
-db.users.find({active: true}, function(err,users){
-  //all users who are active
-});
-
-//include the PK in the criteria for an update
-db.users.<span class="apidocCodeKeywordSpan">save</span>({id : 1, email : &#x22;test@example.com&#x22;}, function(err,updated){
-  //the updated record for the new user
-});
-
-//no PK does an INSERT
-db.users.save({email : &#x22;new@example.com&#x22;}, function(err,inserted){
-  //the new record with the ID
-});
-...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -3210,23 +3074,21 @@ db.users.save({email : &#x22;new@example.com&#x22;}, function(err,inserted){
   this.db.query(sql, params, args.options, args.next);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-The goal with this API is expressiveness and terseness - allowing you to think as little as possible about accessing your data.
+var _ = require(&#x27;underscore&#x27;)._;
+var util = require(&#x22;util&#x22;);
 
-## Full Text Search Built In
+function literalizeArray(arr) {
+if (!_.isArray(arr)) { return arr; }
 
-If you need to query a table or a document store using Postgres&#x27; built-in Full Text Indexing, you certainly can. Just use `
-search` or `searchDoc` and we&#x27;ll build the index on the fly:
+return util.format(&#x27;{%s}&#x27;, arr.map(function (v) {
+  if (v.<span class="apidocCodeKeywordSpan">search</span>(/[,{}]/) !== -1) { return util.format(&#x27;&#x22;%s&#x22;&#x27;, v); }
 
-```javascript
-db.users.<span class="apidocCodeKeywordSpan">search</span>({columns :[&#x22;email&#x22;], term: &#x22;rob&#x22;}, function(err,users
-){
-  //all users with the word &#x27;rob&#x27; in their email
-});
-```
+  return v;
+}).join(&#x27;,&#x27;));
+}
 
-This works the same for documents as well (more on documents in next section):
-
-```javascript
+exports = module.exports = {
+// basic comparison
 ...</pre></li>
     </ul>
 
