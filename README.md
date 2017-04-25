@@ -1,6 +1,6 @@
 # npmdoc-massive
 
-#### api documentation for  [massive (v2.6.0)](https://github.com/robconery/massive-js#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-massive.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-massive) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-massive.svg)](https://travis-ci.org/npmdoc/node-npmdoc-massive)
+#### basic api documentation for  [massive (v2.6.0)](https://github.com/robconery/massive-js#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-massive.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-massive) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-massive.svg)](https://travis-ci.org/npmdoc/node-npmdoc-massive)
 
 #### A small query tool for Postgres that embraces json and makes life simpler
 
